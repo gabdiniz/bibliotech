@@ -76,6 +76,19 @@ export function Login() {
   if (usuarioLogado !== null) {
     return <Navigate to="/" />;
   }
+function mostrarSenha(){
+  const botaoSenha= document.getElementById("suaSenha");
+  const botaoMostrar= document.getElementById("olho");
+
+  if(botaoSenha.type==='password'){
+    botaoSenha.setAttribute('type', 'text')
+    botaoMostrar.classList.replace('bi-eye','bi-eye-slash-fill')
+  }else{
+    botaoSenha.setAttribute('type', 'password')
+    botaoMostrar.classList.replace('bi-eye-slash-fill','bi-eye')
+  }
+}
+  
 
   return (
     <Container fluid className="my-5">
@@ -98,6 +111,7 @@ export function Login() {
         <Form.Group className="mb-3" controlId="email">
           <Form.Label>Email</Form.Label>
           <Form.Control
+          
             type="email"
             placeholder="Seu email"
             className={errors.email ? "is-invalid" : ""}
@@ -111,6 +125,7 @@ export function Login() {
           <Form.Label>Senha</Form.Label>
           <Form.Control
             type="password"
+            id="suaSenha"
             placeholder="Sua senha"
             className={errors.senha ? "is-invalid" : ""}
             {...register("senha", { required: "Senha é obrigatória" })}
@@ -119,9 +134,15 @@ export function Login() {
             {errors.senha?.message}
           </Form.Text>
         </Form.Group>
-        <Button type="submit" variant="success">
+        <div>
+        <Button className="me-1" type="button" variant="success " onClick={mostrarSenha} id="olho">
+        <i class="bi bi-eye"></i>
+        </Button>
+        
+        <Button  type="submit" variant="success" className="my-3" >
           Entrar
         </Button>
+        </div>
       </Form>
     </Container>
   );
