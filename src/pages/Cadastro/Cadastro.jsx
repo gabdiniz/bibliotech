@@ -2,8 +2,9 @@ import { Button, Container, Form } from "react-bootstrap";
 import { Link, Navigate } from "react-router-dom";
 import logoIcon from "../../assets/icons/livros.png";
 import googleIcon from "../../assets/icons/google-white.svg";
+import githubIcon from "../../assets/icons/github.svg"
 import { useForm } from "react-hook-form";
-import { cadastrarEmailSenha, loginGoogle } from "../../firebase/auth";
+import { cadastrarEmailSenha, loginGithub, loginGoogle } from "../../firebase/auth";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
@@ -59,13 +60,29 @@ export function Cadastro() {
       });
   }
 
+  function onLoginGithub() {
+    loginGithub().then((user) => {
+      toast.success(`Bem-vindo(a) ${user.email}`, {
+        position: "bottom-right",
+        duration: 2500,
+      });
+      navigate("/");
+    })
+      .catch((erro) => {
+        // tratamento de erro
+        toast.error(`Um erro aconteceu. Código: ${erro.code}`, {
+          position: "bottom-right",
+          duration: 2500,
+        });
+      });
+  }
   const usuarioLogado = useContext(AuthContext);
 
   if (usuarioLogado === null) {
     // se está deslogado
     // redireciona para a página de login
     return <Navigate to="/" />;
-  } 
+  }
 
   return (
     <Container fluid className="my-5">
@@ -77,10 +94,14 @@ export function Cadastro() {
         Já tem conta? <Link to="/login">Entre</Link>
       </p>
       <hr />
-      <Button className="mb-3" variant="danger" onClick={onLoginGoogle}>
-        <img src={googleIcon} width="32" alt="Logo do google" />
-        Entrar com o Google
+      <Button className="mb-1" variant="danger" onClick={onLoginGoogle}>
+        <img src={googleIcon} width="32" alt="Logo do google" /> Entrar com o Google
       </Button>
+      <br />
+      <Button className="mb-3" variant="dark" onClick={onLoginGithub}>
+        <img src={githubIcon} width="32" alt="Logo do github" /> Entrar com o Github
+      </Button>
+
       <Form onSubmit={handleSubmit(onSubmit)}>
         <Form.Group className="mb-3" controlId="email">
           <Form.Label>Email</Form.Label>
