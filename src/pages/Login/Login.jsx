@@ -106,8 +106,6 @@ export function Login() {
       botaoSenha.setAttribute('type', 'password')
       botaoMostrar.classList.replace('bi-eye-slash-fill', 'bi-eye')
     }
-  }
-
 
   return (
     <Container fluid className="container-login-cadastro">
