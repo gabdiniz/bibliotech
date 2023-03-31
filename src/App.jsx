@@ -7,7 +7,6 @@ import { Toaster } from "react-hot-toast";
 import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase/config";
-import { InAppContext } from "./contexts/InAppContext";
 import { AuthContext } from "./contexts/AuthContext";
 import { AdicionarLivro } from "./pages/AdicionarLivro/AdicionarLivro";
 import { Livros } from "./pages/Livros/Livros";
@@ -20,7 +19,6 @@ import { Loading } from "./pages/Loading/Loading";
 export function App() {
   const [loading, setLoading] = useState(true);
   const [usuarioLogado, setUsuarioLogado] = useState(null);
-  const [inApp, setInApp] = useState(false);
 
   useEffect(() => {
     // Monitorar/detectar o usuário conectado
@@ -41,7 +39,6 @@ export function App() {
   return (
     <>
       <AuthContext.Provider value={usuarioLogado}>
-      <InAppContext.Provider value={inApp}>
         <BrowserRouter>
         {loading === true ? 
         <Loading/>
@@ -61,7 +58,6 @@ export function App() {
           </Routes>
         }
         </BrowserRouter>
-      </InAppContext.Provider>
       </AuthContext.Provider>
       <Toaster />
     </>
