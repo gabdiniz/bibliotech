@@ -16,16 +16,16 @@ export function Footer() {
                 <section className='mb-4'>
                     <p className='text-uppercase fw-bold mb-4'>Acompanhe nossas redes socias:</p>
 
-                    <Button variant="outline-light" floating className='me-2' href='#!' >
+                    <Button variant="outline-light" floating="true" className='me-2' href='#!' >
                         Facebook </Button>
 
-                    <Button variant="outline-light" floating className='m-2' href='#!' >
+                    <Button variant="outline-light" floating="true" className='m-2' href='#!' >
                         Instagram </Button>
 
-                    <Button variant="outline-light" floating className='m-2' href='#!' >
+                    <Button variant="outline-light" floating="true" className='m-2' href='#!' >
                         Linkedin </Button>
 
-                    <Button variant="outline-light" floating className='m-2' href='#!' >
+                    <Button variant="outline-light" floating="true" className='m-2' href='#!' >
                         Github </Button>
                 </section>
 
