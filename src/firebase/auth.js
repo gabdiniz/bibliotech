@@ -6,6 +6,9 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
+  updateEmail,
+  updatePassword,
+  updateProfile,
 } from "firebase/auth";
 import { auth } from "./config";
 
@@ -53,6 +56,21 @@ export async function loginFacebook() {
 export async function logout() {
   // Deslogar o usuário atual do firebase
   await signOut(auth);
+}
+
+export async function updateUsuario(user, newUser) {
+  const displayName = newUser.displayName;
+  await updateEmail(user, newUser.email);
+  if (newUser.senha !== null) {
+    await updatePassword(user, newUser.senha);
+  }
+  await updateProfile(user, { displayName });
+}
+
+export async function deleteUsuario(user) {
+  const resultado = await user.delete();
+
+  return resultado.user;
 }
 
 
