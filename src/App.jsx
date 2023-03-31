@@ -15,8 +15,10 @@ import { AdicionarEmprestimo } from "./pages/AdicionarEmprestimo/AdicionarEmpres
 import { Emprestimos } from "./pages/Emprestimos/Emprestimos";
 import { EditarEmprestimo } from "./pages/EditarEmprestimo/EditarEmprestimo";
 import { Footer } from "./pages/Footer/Footer";
+import { Loading } from "./pages/Loading/Loading";
 
 export function App() {
+  const [loading, setLoading] = useState(true);
   const [usuarioLogado, setUsuarioLogado] = useState(null);
 
   useEffect(() => {
@@ -30,12 +32,18 @@ export function App() {
 
     // Esse efeito irá rodar apenas uma vez
     // Quando o App for renderizado/inicializado
+    setTimeout(() => {
+      setLoading(false);
+    }, 2500);
   }, []);
 
   return (
     <>
       <AuthContext.Provider value={usuarioLogado}>
         <BrowserRouter>
+        {loading === true ? 
+        <Loading/>//Enquanto a pagina carrega os dados exibe a paginade loading
+        :
           <Routes>
             <Route path="/" element={<Root />}>
               <Route path="/" element={<Home />} />
@@ -50,6 +58,7 @@ export function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/cadastro" element={<Cadastro />} />
           </Routes>
+        }
         </BrowserRouter>
       </AuthContext.Provider>
       <Toaster />

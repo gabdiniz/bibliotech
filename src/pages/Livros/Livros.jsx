@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Container, Table } from "react-bootstrap";
+import { Button, Container, Modal, Table } from "react-bootstrap";
 import { toast } from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { Loader } from "../../components/Loader/Loader";
@@ -7,26 +7,40 @@ import { deleteLivro, getLivros } from "../../firebase/livros";
 import "./Livros.css";
 
 export function Livros() {
-
     const [livros, setLivros] = useState(null);
+    const [show, setShow] = useState(false);
 
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+    const [LivrosSelecionado, setLivrosSelecionado] = useState(null)
     useEffect(() => {
         initializeTable();
     }, []);
 
     function initializeTable() {
-        getLivros().then(resultados => {
-            setLivros(resultados)
-        })
+        getLivros().then((resultados) => {
+            setLivros(resultados);
+        });
+    }
+    function buscarLivros(id) {
+        getLivros(id).then((resultados) => {
+            setLivros(resultados);
+        });
     }
 
     function onDeleteLivro(id, titulo) {
-        const deletar = window.confirm(`Tem certeza que deseja excluir o livro ${titulo}?`);
-        if(deletar) {
+        const deletar = window.confirm(
+            `Tem certeza que deseja excluir o livro ${titulo}?`
+        );
+        if (deletar) {
             deleteLivro(id).then(() => {
-                toast.success(`${titulo} apagado com sucesso!`, {duration: 2000, position: "bottom-right"});
+                toast.success(`${titulo} apagado com sucesso!`, {
+                    duration: 2000,
+                    position: "bottom-right",
+                });
                 initializeTable();
-            })
+            });
         }
     }
 
@@ -40,9 +54,9 @@ export function Livros() {
                     </Button>
                 </div>
                 <hr />
-                {livros === null ?
+                {livros === null ? (
                     <Loader />
-                    : 
+                ) : (
                     <Table striped bordered hover>
                         <thead>
                             <tr>
@@ -55,7 +69,7 @@ export function Livros() {
                             </tr>
                         </thead>
                         <tbody>
-                            {livros.map(livro => {
+                            {livros.map((livro) => {
                                 return (
                                     <tr key={livro.id}>
                                         <td>{livro.titulo}</td>
@@ -75,18 +89,54 @@ export function Livros() {
                                             >
                                                 <i className="bi bi-pencil-fill"></i>
                                             </Button>
-                                            <Button size="sm" variant="danger" onClick={() => onDeleteLivro(livro.id, livro.titulo)}>
+                                            <Button
+                                                size="sm"
+                                                variant="danger"
+                                                onClick={() => onDeleteLivro(livro.id, livro.titulo)}
+                                            >
                                                 <i className="bi bi-trash3-fill"></i>
                                             </Button>
+
+
+                                            <Button size="sm" variant="primary" onClick={() => {
+                                                setLivrosSelecionado(livro)
+                                                handleShow()
+
+                                            }}>
+                                                <i className="bi bi-body-text"></i>
+                                            </Button>
+
+                                            <Modal show={show} onHide={handleClose}>
+                                                <Modal.Header closeButton>
+                                                    <Modal.Title></Modal.Title>
+                                                </Modal.Header>
+                                                <Modal.Body>
+                                                    <p>{LivrosSelecionado?.autor}</p>
+                                                    <p>{LivrosSelecionado?.categoria}</p>
+                                                    <p>{LivrosSelecionado?.isbn}</p>
+                                                    <img style={{ width: "300px" }}
+                                                        src={LivrosSelecionado?.urlCapa} alt={LivrosSelecionado?.titulo} />
+
+                                                </Modal.Body>
+                                                <Modal.Footer>
+                                                    <Button variant="secondary" onClick={handleClose}>
+                                                        Fechar
+                                                    </Button>
+
+                                                </Modal.Footer>
+                                            </Modal>
+
+
+
                                         </td>
                                     </tr>
-                                )
+                                );
                             })}
                         </tbody>
                     </Table>
-                }
+                )}
             </Container>
             <br/>
         </div>
-    )
+    );
 }
