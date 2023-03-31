@@ -18,6 +18,7 @@ import { NotFound } from "./pages/NotFound/NotFound";
 import { PaginaAjuda } from "./pages/PaginaAjuda/PaginaAjuda";
 import { Footer } from "./pages/Footer/Footer";
 import { Loading } from "./pages/Loading/Loading";
+import { Postagem } from "./pages/Postagem/Postagem";
 import { Perfil } from "./pages/Perfil/Perfil";
 
 export function App() {
@@ -59,6 +60,7 @@ export function App() {
                 <Route path="/perfil" element={<Perfil />} />
                 <Route path="/" element={<Footer />} />
                 <Route path="/ajuda" element={<PaginaAjuda/>} />
+                <Route path="/postagem" element={<Postagem/>} />
               </Route>
               <Route path="/login" element={<Login />} />
               <Route path="/cadastro" element={<Cadastro />} />
