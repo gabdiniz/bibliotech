@@ -50,7 +50,10 @@ export function Menu() {
             <Nav.Link as={Link} to="/postagem">
              Postagens
             </Nav.Link>
-            <Nav.Link>
+            <Nav.Link as={Link} to="/ajuda">
+              Ajuda
+            </Nav.Link>
+            <Nav.Link as={Link} to="/perfil">
               {nome}
             </Nav.Link>
             <Nav.Link onClick={onLogout}>

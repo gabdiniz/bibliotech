@@ -1,0 +1,7 @@
+.perfil {
+  margin: 30px;
+  padding: 70px 30px 30px;
+  border: 2px solid white;
+  border-radius: 12px;
+  box-shadow: 2px 2px 5px darkgray;
+}
