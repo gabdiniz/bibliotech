@@ -3,9 +3,23 @@ import { Container, Nav, Navbar } from "react-bootstrap";
 import logoIcon from "./../../assets/icons/livros.png";
 import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../../firebase/auth";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../contexts/AuthContext";
 
 export function Menu() {
   const navigate = useNavigate();
+  const usuarioLogado = useContext(AuthContext);
+  const [nome, setNome] = useState();
+
+  useEffect(() => {
+    if (usuarioLogado.displayName !== null) {
+      setNome(usuarioLogado.displayName);
+    }
+    else {
+      const usuario = usuarioLogado.email.split("@")
+      setNome(usuario[0])
+    }
+  }, [])
 
   function onLogout() {
     logout().then(() => {
@@ -32,6 +46,12 @@ export function Menu() {
             </Nav.Link>
             <Nav.Link as={Link} to="/emprestimos">
               Emprestimos
+            </Nav.Link>
+            <Nav.Link as={Link} to="/ajuda">
+              Ajuda
+            </Nav.Link>
+            <Nav.Link>
+              {nome}
             </Nav.Link>
             <Nav.Link onClick={onLogout}>
               <i className="bi bi-box-arrow-right"></i>

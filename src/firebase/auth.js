@@ -1,5 +1,6 @@
 import {
   createUserWithEmailAndPassword,
+  FacebookAuthProvider,
   GithubAuthProvider,
   GoogleAuthProvider,
   signInWithEmailAndPassword,
@@ -42,7 +43,16 @@ export async function loginGithub() {
   return resultado.user;
 }
 
+export async function loginFacebook() {
+  const provider = new FacebookAuthProvider();
+  const resultado = await signInWithPopup(auth, provider);
+
+  return resultado.user;
+}
+
 export async function logout() {
   // Deslogar o usuário atual do firebase
   await signOut(auth);
 }
+
+
