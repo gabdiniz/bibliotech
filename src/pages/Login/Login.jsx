@@ -99,14 +99,13 @@ export function Login() {
     const botaoSenha = document.getElementById("suaSenha");
     const botaoMostrar = document.getElementById("olho");
 
-
-
     if (botaoSenha.type === 'password') {
       botaoSenha.setAttribute('type', 'text')
       botaoMostrar.classList.replace('bi-eye', 'bi-eye-slash-fill')
     } else {
       botaoSenha.setAttribute('type', 'password')
       botaoMostrar.classList.replace('bi-eye-slash-fill', 'bi-eye')
+    }
 
   return (
     <Container fluid className="container-login-cadastro">
