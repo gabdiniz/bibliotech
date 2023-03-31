@@ -1,0 +1,10 @@
+.carousel-item > img {
+  
+    height: 500px; 
+  }
+ .im{
+    background-color: rgba(126,203,219,200);
+    /* background-image: url(/src/assets/images/OIP\ \(2\).jpg);
+    background-size: cover; */
+   
+ } 
