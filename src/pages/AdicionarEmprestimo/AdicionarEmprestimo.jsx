@@ -70,6 +70,7 @@ export function AdicionarEmprestimo() {
                     </Form.Group>
                     <Button type="submit" variant="success">Emprestar</Button>
                 </Form>
+                <br/>
             </Container>
         </div>
     );
