@@ -78,9 +78,9 @@ export function Cadastro() {
   }
   const usuarioLogado = useContext(AuthContext);
 
-  if (usuarioLogado === null) {
-    // se está deslogado
-    // redireciona para a página de login
+  if (usuarioLogado !== null) {
+    // se está logado
+    // redireciona para a página home
     return <Navigate to="/" />;
   }
 
