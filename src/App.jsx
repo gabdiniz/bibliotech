@@ -33,7 +33,7 @@ export function App() {
     // Quando o App for renderizado/inicializado
     setTimeout(() => {
       setLoading(false);
-    }, 2000);
+    }, 2500);
   }, []);
 
   return (

@@ -1,7 +1,9 @@
+import { Splash } from "../../components/Slash/Splash";
+
 export function Loading() {
     return (
-        <div>
-            <div><h1>Melhorando...</h1></div>
+        <div className="mt-5 d-flex justify-content-center text-center">
+            <Splash/>
         </div>
     );
 }
