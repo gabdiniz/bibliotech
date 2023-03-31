@@ -14,6 +14,8 @@ import { EditarLivro } from "./pages/EditarLivro/EditarLivro";
 import { AdicionarEmprestimo } from "./pages/AdicionarEmprestimo/AdicionarEmprestimo";
 import { Emprestimos } from "./pages/Emprestimos/Emprestimos";
 import { EditarEmprestimo } from "./pages/EditarEmprestimo/EditarEmprestimo";
+import { NotFound } from "./pages/NotFound/NotFound";
+import { PaginaAjuda } from "./pages/PaginaAjuda/PaginaAjuda";
 import { Footer } from "./pages/Footer/Footer";
 import { Loading } from "./pages/Loading/Loading";
 import { Perfil } from "./pages/Perfil/Perfil";
@@ -56,9 +58,11 @@ export function App() {
                 <Route path="/emprestimos/editar/:id" element={<EditarEmprestimo />} />
                 <Route path="/perfil" element={<Perfil />} />
                 <Route path="/" element={<Footer />} />
+                <Route path="/ajuda" element={<PaginaAjuda/>} />
               </Route>
               <Route path="/login" element={<Login />} />
               <Route path="/cadastro" element={<Cadastro />} />
+              <Route path="*" element={<NotFound/>}/>
             </Routes>
           }
         </BrowserRouter>
