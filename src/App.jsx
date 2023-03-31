@@ -41,7 +41,7 @@ export function App() {
       <AuthContext.Provider value={usuarioLogado}>
         <BrowserRouter>
         {loading === true ? 
-        <Loading/>
+        <Loading/>//Enquanto a pagina carrega os dados exibe a paginade loading
         :
           <Routes>
             <Route path="/" element={<Root />}>
