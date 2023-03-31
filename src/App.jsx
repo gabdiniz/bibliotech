@@ -14,6 +14,7 @@ import { EditarLivro } from "./pages/EditarLivro/EditarLivro";
 import { AdicionarEmprestimo } from "./pages/AdicionarEmprestimo/AdicionarEmprestimo";
 import { Emprestimos } from "./pages/Emprestimos/Emprestimos";
 import { EditarEmprestimo } from "./pages/EditarEmprestimo/EditarEmprestimo";
+import { PaginaAjuda } from "./pages/PaginaAjuda/PaginaAjuda";
 
 export function App() {
   const [usuarioLogado, setUsuarioLogado] = useState(null);
@@ -39,11 +40,13 @@ export function App() {
             <Route path="/" element={<Root />}>
               <Route path="/" element={<Home />} />
               <Route path="/livros" element={<Livros />} />
+              <Route path="/ajuda" element={<PaginaAjuda/>} />
               <Route path="/livros/adicionar" element={<AdicionarLivro />} />
               <Route path="/livros/editar/:id" element={<EditarLivro />} />
               <Route path="/emprestimos" element={<Emprestimos />} />
               <Route path="/emprestimos/adicionar" element={<AdicionarEmprestimo />} />
               <Route path="/emprestimos/editar/:id" element={<EditarEmprestimo />} />
+              
             </Route>
             <Route path="/login" element={<Login />} />
             <Route path="/cadastro" element={<Cadastro />} />
