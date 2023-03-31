@@ -67,6 +67,7 @@ export function Emprestimos() {
                             </tbody>
                         </Table>
                 }
+                <br/>
 
             </Container>
         </div>
