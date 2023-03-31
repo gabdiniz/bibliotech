@@ -81,11 +81,12 @@ function mostrarSenha(){
   const botaoMostrar= document.getElementById("olho");
 
   if(botaoSenha.type==='password'){
-    botaoSenha.setAttribute('type', 'text')
-    botaoMostrar.classList.replace('bi-eye','bi-eye-slash-fill')
-  }else{
-    botaoSenha.setAttribute('type', 'password')
-    botaoMostrar.classList.replace('bi-eye-slash-fill','bi-eye')
+    botaoSenha.setAttribute('type', 'text') ||
+     botaoMostrar.classList.remove('bi-eye-fill')
+    
+  //}else{
+    //botaoSenha.setAttribute('type', 'password');
+   // botaoMostrar.Element.classList.replace('bi-eye-slash-fill','bi-eye-fill');
   }
 }
   
@@ -136,7 +137,7 @@ function mostrarSenha(){
         </Form.Group>
         <div>
         <Button className="me-1" type="button" variant="success " onClick={mostrarSenha} id="olho">
-        <i class="bi bi-eye"></i>
+        <i className="bi bi-eye-fill"></i>
         </Button>
         
         <Button  type="submit" variant="success" className="my-3" >
