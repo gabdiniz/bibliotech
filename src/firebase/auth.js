@@ -10,7 +10,8 @@ import {
   updatePassword,
   updateProfile,
 } from "firebase/auth";
-import { auth } from "./config";
+import { auth, storage } from "./config";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
 // Função assíncrona = que o resultado não é obtido de imediato
 // Haverá "espera"
@@ -60,11 +61,12 @@ export async function logout() {
 
 export async function updateUsuario(user, newUser) {
   const displayName = newUser.displayName;
+  const photoUrl = newUser.photoURL;
   await updateEmail(user, newUser.email);
   if (newUser.senha !== null) {
     await updatePassword(user, newUser.senha);
   }
-  await updateProfile(user, { displayName });
+  await updateProfile(user, { displayName, photoURL: photoUrl });
 }
 
 export async function deleteUsuario(user) {
@@ -73,4 +75,10 @@ export async function deleteUsuario(user) {
   return resultado.user;
 }
 
+export async function uploadFotoPefil(imagem) {
+  const filename = imagem.name;
+  const imageRef = ref(storage, `usuarios/${filename}`);
+  const result = await uploadBytes(imageRef, imagem);
+  return await getDownloadURL(result.ref);
+}
 

@@ -3,5 +3,33 @@
   padding: 70px 30px 30px;
   border: 2px solid white;
   border-radius: 12px;
-  box-shadow: 2px 2px 5px darkgray;
+  box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.perfil .aside {
+  width: 25%;
+  padding: 10px;
+}
+
+.perfil .form {
+  width: 75%;
+  padding: 15px;
+}
+
+.perfil .aside img {
+  width: 100%;
+  border-radius: 50%;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px;
+}
+
+@media (max-width: 760px) {
+  .perfil .aside {
+    width: 75%;
+  }
+
+  .perfil .form {
+    width: 100%;
+  }
 }
