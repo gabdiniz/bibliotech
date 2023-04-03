@@ -5,6 +5,7 @@ import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { adicionarPostagem } from "../../firebase/postagens";
 import { getLivro, getLivros } from "../../firebase/livros"
+import { firebaseError } from "../../firebase/erros";
 
 export function AdicionarPostagem() {
 
@@ -44,7 +45,7 @@ export function AdicionarPostagem() {
                         <Form.Label>Leitor</Form.Label>
                         <Form.Control type="text" className={errors.leitor && "is-invalid"} {...register("leitor", { required: "Leitor é obrigatório!", maxLength: { value: 30, message: "Limite de 30 caracteres!" } })} />
                         <Form.Text className="invalid-feedback">
-                            {errors.leitor?.message}
+                            {firebaseError(errors.leitor?.message) }
                         </Form.Text>
                     </Form.Group>
 
@@ -54,7 +55,7 @@ export function AdicionarPostagem() {
                             {livros.map(livro => <option key={livro.id} value={livro.id}>{livro.titulo}</option>)}
                         </Form.Select>
                         <Form.Text className="invalid-feedback">
-                            {errors.idLivro?.message}
+                            {firebaseError(errors.idLivro?.message) }
                         </Form.Text>
                     </Form.Group>
 
@@ -66,7 +67,7 @@ export function AdicionarPostagem() {
                             <option value="Não tenho certeza">Não tenho certeza</option>
                         </Form.Select>
                         <Form.Text className="invalid-feedback">
-                            {errors.recomenda?.message}
+                            {firebaseError(errors.recomenda?.message) }
                         </Form.Text>
                     </Form.Group>
 
@@ -74,7 +75,7 @@ export function AdicionarPostagem() {
                         <Form.Label>Resenha</Form.Label>
                         <Form.Control type="text" as="textarea" rows={5} className={errors.resenha && "is-invalid"} {...register("resenha", { required: "Preenchimento obrigatório!", maxLength: { value: 128, message: "Limite de 128 caracteres!" } })} />
                         <Form.Text className="invalid-feedback">
-                            {errors.resenha?.message}
+                            {firebaseError(errors.resenha?.message) }
                         </Form.Text>
                     </Form.Group>
 

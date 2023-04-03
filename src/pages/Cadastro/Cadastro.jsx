@@ -10,6 +10,7 @@ import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
+import { firebaseError } from "../../firebase/erros";
 
 export function Cadastro() {
 
@@ -32,7 +33,7 @@ export function Cadastro() {
         navigate("/");
       })
       .catch((erro) => {
-        toast.error(`Um erro aconteceu. Código: ${erro.code}`, {
+        toast.error(`Um erro aconteceu. Código: ${firebaseError(erro.code) }`, {
           position: "bottom-right",
           duration: 2500,
         });
@@ -51,7 +52,7 @@ export function Cadastro() {
       })
       .catch((erro) => {
         // tratamento de erro
-        toast.error(`Um erro aconteceu. Código: ${erro.code}`, {
+        toast.error(`Um erro aconteceu. Código: ${firebaseError(erro.code)}`, {
           position: "bottom-right",
           duration: 2500,
         });
@@ -68,7 +69,7 @@ export function Cadastro() {
     })
       .catch((erro) => {
         // tratamento de erro
-        toast.error(`Um erro aconteceu. Código: ${erro.code}`, {
+        toast.error(`Um erro aconteceu. Código: ${firebaseError(erro.code) }`, {
           position: "bottom-right",
           duration: 2500,
         });
@@ -85,7 +86,7 @@ export function Cadastro() {
     })
       .catch((erro) => {
         // tratamento de erro
-        toast.error(`Um erro aconteceu. Código: ${erro.code}`, {
+        toast.error(`Um erro aconteceu. Código: ${firebaseError(erro.code) }`, {
           position: "bottom-right",
           duration: 2500,
         });
@@ -134,7 +135,7 @@ export function Cadastro() {
               {...register("email", { required: "O email é obrigatório" })}
             />
             <Form.Text className="invalid-feedback">
-              {errors.email?.message}
+              {firebaseError(errors.email?.message) }
             </Form.Text>
           </Form.Group>
           <Form.Group className="mb-3" controlId="password">
@@ -146,7 +147,7 @@ export function Cadastro() {
               {...register("senha", { required: "A senha é obrigatória" })}
             />
             <Form.Text className="invalid-feedback">
-              {errors.senha?.message}
+              {firebaseError(errors.senha?.message) }
             </Form.Text>
           </Form.Group>
           <Button type="submit" variant="success">Cadastrar</Button>
