@@ -47,7 +47,7 @@ export function Menu() {
             <Nav.Link as={Link} to="/emprestimos">
               Emprestimos
             </Nav.Link>
-            <Nav.Link as={Link} to="/postagem">
+            <Nav.Link as={Link} to="/postagens">
              Postagens
             </Nav.Link>
             <Nav.Link as={Link} to="/ajuda">
