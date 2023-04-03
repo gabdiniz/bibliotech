@@ -1,31 +1,54 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import "./Perfil.css";
 import { useForm } from "react-hook-form";
 import { Button, Container, Form } from "react-bootstrap";
-import { deleteUsuario, updateUsuario } from "../../firebase/auth";
+import { updateUsuario, uploadFotoPefil } from "../../firebase/auth";
 import { toast } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
-import { auth } from "../../firebase/config";
 import { deleteUser } from "@firebase/auth";
+import semFotoPerfil from "../../assets/images/perfil/semFotoPerfil.jpg"
 
 export function Perfil() {
 
   const usuarioLogado = useContext(AuthContext);
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
   const navigate = useNavigate();
+  const [imagem, setImagem] = useState(null);
+
+  if (imagem === null) {
+    (usuarioLogado.photoURL !== null) ? setImagem(usuarioLogado.photoURL) : setImagem(semFotoPerfil);
+  }
 
   useEffect(() => {
     reset(usuarioLogado);
   }, [reset, usuarioLogado]);
 
   function onSubmit(data) {
-    updateUsuario(usuarioLogado, data).then(() => {
-      toast.success("Usuário atualizado com sucesso");
-      navigate("/");
-    }).catch((e) => {
-      toast.error(`Um erro aconteceu. Código: ${e.code}`);
-    })
+    const img = data.imagem[0];
+    if (img) {
+      const toastId = toast.loading("Upload da imagem...", { position: "top-right" });
+      uploadFotoPefil(img).then((url) => {
+        toast.dismiss(toastId);
+        data.photoURL = url;
+        delete data.imagem;
+        updateUsuario(usuarioLogado, data).then(() => {
+          toast.success("Usuário atualizado com sucesso");
+          navigate("/");
+        }).catch((e) => {
+          toast.error(`Um erro aconteceu. Código: ${e.code}`);
+        });
+      })
+    }
+    else {
+      delete data.imagem;
+      updateUsuario(usuarioLogado, data).then(() => {
+        toast.success("Usuário atualizado com sucesso");
+        navigate("/");
+      }).catch((e) => {
+        toast.error(`Um erro aconteceu. Código: ${e.code}`);
+      });
+    }
   }
 
   function onDelete() {
@@ -33,16 +56,17 @@ export function Perfil() {
       toast.success("Usuário deletado com sucesso");
     }).catch((e) => {
       toast.error(`Um erro aconteceu. Código: ${e.code}`);
-    })
+    });
   }
 
-  console.log(usuarioLogado);
-
   return (
-
     <Container className="mb-3">
+
       <div className="perfil">
-        <Form onSubmit={handleSubmit(onSubmit)}>
+        <div className="aside">
+          <img src={imagem} alt="" />
+        </div>
+        <Form onSubmit={handleSubmit(onSubmit)} className="form">
 
           <Form.Group className="mb-3">
             <Form.Label>Nome</Form.Label>
@@ -66,6 +90,11 @@ export function Perfil() {
             <Form.Text className="text-danger">
               {errors.senha?.message}
             </Form.Text>
+          </Form.Group>
+
+          <Form.Group className="mb-3">
+            <Form.Label>Imagem de Perfil</Form.Label>
+            <Form.Control type="file" {...register("imagem")} />
           </Form.Group>
 
           <div className="mt-4">
