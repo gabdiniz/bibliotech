@@ -18,8 +18,9 @@ import { NotFound } from "./pages/NotFound/NotFound";
 import { PaginaAjuda } from "./pages/PaginaAjuda/PaginaAjuda";
 import { Footer } from "./pages/Footer/Footer";
 import { Loading } from "./pages/Loading/Loading";
-import { Postagem } from "./pages/Postagem/Postagem";
+import { Postagens } from "./pages/Postagens/Postagens";
 import { Perfil } from "./pages/Perfil/Perfil";
+import { AdicionarPostagem } from "./pages/AdicionarPostagem/AdicionarPostagem";
 
 export function App() {
   const [loading, setLoading] = useState(true);
@@ -60,7 +61,8 @@ export function App() {
                 <Route path="/perfil" element={<Perfil />} />
                 <Route path="/" element={<Footer />} />
                 <Route path="/ajuda" element={<PaginaAjuda/>} />
-                <Route path="/postagem" element={<Postagem/>} />
+                <Route path="/postagens" element={<Postagens/>} />
+                <Route path="/postagens/adicionar" element={<AdicionarPostagem/>} />
               </Route>
               <Route path="/login" element={<Login />} />
               <Route path="/cadastro" element={<Cadastro />} />
