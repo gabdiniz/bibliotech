@@ -1,0 +1,16 @@
+.post-postagens {
+    display: grid;
+    grid-gap: 30px;
+    grid-template-columns: repeat(3, 390px);
+    justify-content: center;
+    justify-items: center;
+    padding: 30px;
+}
+
+.card-postagem-card {
+    background-color: #c2dfb4!important;
+    border-radius: 25px 0px 50px 0px !important;
+    margin-bottom: 20px;
+    width: 390px;
+    height: 380px !important;
+}

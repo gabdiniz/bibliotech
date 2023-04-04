@@ -11,6 +11,7 @@ import interrogacao from "../../assets/icons/interrogacao.png"
 import { AuthContext } from "../../contexts/AuthContext";
 import { loginGoogle, loginEmailSenha, loginGithub, loginFacebook } from "../../firebase/auth";
 import "./login.css"
+import { firebaseError } from "../../firebase/erros";
 
 export function Login() {
   const {
@@ -32,7 +33,7 @@ export function Login() {
         navigate("/");
       })
       .catch((erro) => {
-        toast.error(`Um erro aconteceu. Código: ${erro.code}`, {
+        toast.error(`Um erro aconteceu. Código: ${firebaseError( erro.code)}`, {
           position: "bottom-right",
           duration: 2500,
         });
@@ -49,7 +50,7 @@ export function Login() {
         navigate("/");
       })
       .catch((erro) => {
-        toast.error(`Um erro aconteceu. Código: ${erro.code}`, {
+        toast.error(`Um erro aconteceu. Código: ${firebaseError(erro.code)}`, {
           position: "bottom-right",
           duration: 2500,
         });
@@ -66,7 +67,7 @@ export function Login() {
     })
       .catch((erro) => {
         // tratamento de erro
-        toast.error(`Um erro aconteceu. Código: ${erro.code}`, {
+        toast.error(`Um erro aconteceu. Código: ${firebaseError(erro.code)}`, {
           position: "bottom-right",
           duration: 2500,
         });
@@ -83,7 +84,7 @@ export function Login() {
     })
       .catch((erro) => {
         // tratamento de erro
-        toast.error(`Um erro aconteceu. Código: ${erro.code}`, {
+        toast.error(`Um erro aconteceu. Código: ${firebaseError(erro.code)}`, {
           position: "bottom-right",
           duration: 2500,
         });
@@ -109,7 +110,6 @@ export function Login() {
       botaoMostrar.classList.replace('bi-eye-slash-fill', 'bi-eye')
     }
   }
-  
 
   return (
     <Container fluid className="container-login-cadastro">
@@ -149,7 +149,7 @@ export function Login() {
               {...register("email", { required: "Email é obrigatório" })}
             />
             <Form.Text className="invalid-feedback">
-              {errors.email?.message}
+              {firebaseError(errors.email?.message)} 
             </Form.Text>
           </Form.Group>
           <Form.Group className="mb-3" controlId="senha">
@@ -162,7 +162,7 @@ export function Login() {
               {...register("senha", { required: "Senha é obrigatória" })}
             />
             <Form.Text className="invalid-feedback">
-              {errors.senha?.message}
+              {firebaseError(errors.senha?.message) }
             </Form.Text>
           </Form.Group>
           <div>
