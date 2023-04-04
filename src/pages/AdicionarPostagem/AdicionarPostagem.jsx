@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Container, Form } from "react-bootstrap";
+import { Breadcrumb, Button, Container, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
@@ -34,12 +34,16 @@ export function AdicionarPostagem() {
 
     return (
         <div className="adicionar-postagem">
+            <div className="p-1">
+                <Breadcrumb>
+                    <Breadcrumb.Item onClick={() => navigate("/postagens")}>Postagens</Breadcrumb.Item>
+                    <Breadcrumb.Item active>Adicionar</Breadcrumb.Item>
+                </Breadcrumb>
+            </div>
             <Container>
                 <h1>Adicionar nova postagem</h1>
                 <hr />
-
                 <form onSubmit={handleSubmit(onSubmit)}>
-
                     <Form.Group className="mb-3">
                         <Form.Label>Leitor</Form.Label>
                         <Form.Control type="text" className={errors.leitor && "is-invalid"} {...register("leitor", { required: "Leitor é obrigatório!", maxLength: { value: 30, message: "Limite de 30 caracteres!" } })} />

@@ -1,8 +1,8 @@
 import { useEffect } from "react";
-import { Button, Container, Form } from "react-bootstrap";
+import { Breadcrumb, Button, Container, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { getLivro, updateLivro, uploadCapaLivro } from "../../firebase/livros";
 
 export function EditarLivro() {
@@ -44,6 +44,12 @@ export function EditarLivro() {
 
     return (
         <div className="editar-livro">
+            <div className="p-1">
+                <Breadcrumb>
+                    <Breadcrumb.Item onClick={() => navigate("/livros")}>Livros</Breadcrumb.Item>
+                    <Breadcrumb.Item active>Editar</Breadcrumb.Item>
+                </Breadcrumb>
+            </div>
             <Container>
                 <h1>Editar livro</h1>
                 <hr />
