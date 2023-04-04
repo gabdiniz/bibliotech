@@ -166,6 +166,8 @@ export function Login() {
             </Button>
             <Button type="submit" variant="success" className="my-3">Entrar</Button>
           </div>
+          <Link to="/recuperar" > Recuperar senha
+          </Link>
         </Form>
       </div>
     </Container>

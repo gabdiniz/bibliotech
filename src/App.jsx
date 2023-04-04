@@ -21,6 +21,7 @@ import { Loading } from "./pages/Loading/Loading";
 import { Postagens } from "./pages/Postagens/Postagens";
 import { Perfil } from "./pages/Perfil/Perfil";
 import { AdicionarPostagem } from "./pages/AdicionarPostagem/AdicionarPostagem";
+import { RecuperarSenha } from "./pages/RecuperarSenha/RecuperarSenha";
 
 export function App() {
   const [loading, setLoading] = useState(true);
@@ -65,6 +66,7 @@ export function App() {
                 <Route path="/postagens/adicionar" element={<AdicionarPostagem/>} />
               </Route>
               <Route path="/login" element={<Login />} />
+              <Route path="/recuperar" element={<RecuperarSenha />} />
               <Route path="/cadastro" element={<Cadastro />} />
               <Route path="*" element={<NotFound/>}/>
             </Routes>
