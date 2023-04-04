@@ -4,32 +4,45 @@ import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { addLivro, uploadCapaLivro } from "../../firebase/livros";
 import { firebaseError } from "../../firebase/erros";
+import { categorias } from "../../firebase/CategoriaLivros";
 
 export function AdicionarLivro() {
+   
 
-    const { register, handleSubmit, formState: { errors } } = useForm();
-    const navigate = useNavigate();
-
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm();
+    const navigate = useNavigate();    
+      
     function onSubmit(data) {
         const imagem = data.imagem[0];
         if (imagem) {
-            const toastId = toast.loading("Upload da imagem...", { position: "top-right" });
-            uploadCapaLivro(imagem).then(url => {
+            const toastId = toast.loading("Upload da imagem...", {
+                position: "top-right",
+            });
+            uploadCapaLivro(imagem).then((url) => {
                 toast.dismiss(toastId);
                 data.urlCapa = url;
                 delete data.imagem;
                 addLivro(data).then(() => {
-                    toast.success("Livro adicionado com sucesso!", { duration: 2000, position: "bottom-right" })
+                    toast.success("Livro adicionado com sucesso!", {
+                        duration: 2000,
+                        position: "bottom-right",
+                    });
                     navigate("/livros");
-                })
-            })
-        }
-        else {
+                });
+            });
+        } else {
             delete data.imagem;
             addLivro(data).then(() => {
-                toast.success("Livro adicionado com sucesso!", { duration: 2000, position: "bottom-right" })
+                toast.success("Livro adicionado com sucesso!", {
+                    duration: 2000,
+                    position: "bottom-right",
+                });
                 navigate("/livros");
-            })
+            });
         }
     }
 
@@ -41,40 +54,72 @@ export function AdicionarLivro() {
                 <Form onSubmit={handleSubmit(onSubmit)}>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Título</Form.Label>
-                        <Form.Control type="text" className={errors.titulo && "is-invalid"} {...register("titulo", { required: "Título é obrigatório!", maxLength: { value: 255, message: "Limite de 255 caracteres!" } })} />
+                        <Form.Control
+                            type="text"
+                            className={errors.titulo && "is-invalid"}
+                            {...register("titulo", {
+                                required: "Título é obrigatório!",
+                                maxLength: { value: 255, message: "Limite de 255 caracteres!" },
+                            })}
+                        />
                         <Form.Text className="text-danger">
-                            {firebaseError(errors.titulo?.message) }
+                            {firebaseError(errors.titulo?.message)}
                         </Form.Text>
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Autor</Form.Label>
-                        <Form.Control type="text" className={errors.autor && "is-invalid"} {...register("autor", { required: "Autor é obrigatório!", maxLength: { value: 255, message: "Limite de 255 caracteres!" } })} />
+                        <Form.Control
+                            type="text"
+                            className={errors.autor && "is-invalid"}
+                            {...register("autor", {
+                                required: "Autor é obrigatório!",
+                                maxLength: { value: 255, message: "Limite de 255 caracteres!" },
+                            })}
+                        />
                         <Form.Text className="text-danger">
-                            {firebaseError(errors.autor?.message) }
+                            {firebaseError(errors.autor?.message)}
                         </Form.Text>
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Categoria</Form.Label>
-                        <Form.Control type="text" className={errors.categoria && "is-invalid"} {...register("categoria", { required: "Categoria é obrigatória!", maxLength: { value: 255, message: "Limite de 255 caracteres!" } })} />
+                        <Form.Select {...register("categoria", { required: "Categoria e obrigatorio!" })} aria-label="Default select example">
+                                <option value="" selected disabled >Escolha uma opção</option>
+                            {categorias.map((cat) => (
+                                <option>{cat}</option>
+                            ))}
+                        </Form.Select>
                         <Form.Text className="text-danger">
-                            {firebaseError(errors.categoria?.message) }
+                            {errors.categoria?.message}
                         </Form.Text>
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>ISBN</Form.Label>
-                        <Form.Control type="text" className={errors.isbn && "is-invalid"} {...register("isbn", { required: "ISBN é obrigatório!", maxLength: { value: 255, message: "Limite de 255 caracteres!" } })} />
+                        <Form.Control
+                            type="text"
+                            className={errors.isbn && "is-invalid"}
+                            {...register("isbn", {
+                                required: "ISBN é obrigatório!",
+                                maxLength: { value: 255, message: "Limite de 255 caracteres!" },
+                            })}
+                        />
                         <Form.Text className="text-danger">
-                            {firebaseError(errors.isbn?.message) }
+                            {firebaseError(errors.isbn?.message)}
                         </Form.Text>
                     </Form.Group>
                     <Form.Group className="mb-3">
                         <Form.Label>Imagem da capa</Form.Label>
-                        <Form.Control type="file" accept=".png,.jpg,.jpeg,.gif" {...register("imagem")} />
+                        <Form.Control
+                            type="file"
+                            accept=".png,.jpg,.jpeg,.gif"
+                            {...register("imagem")}
+                        />
                     </Form.Group>
-                    <Button type="submit" variant="success">Adicionar</Button>
+                    <Button type="submit" variant="success">
+                        Adicionar
+                    </Button>
                 </Form>
-                <br/>
+                <br />
             </Container>
         </div>
-    )
+    );
 }
