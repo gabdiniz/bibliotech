@@ -7,6 +7,7 @@ import googleIcon from "../../assets/icons/google-white.svg";
 import loginImg from "../../assets/images/login.png";
 import githubIcon from "../../assets/icons/github.svg"
 import facebookIcon from "../../assets/icons/facebook.svg"
+import interrogacao from "../../assets/icons/interrogacao.png"
 import { AuthContext } from "../../contexts/AuthContext";
 import { loginGoogle, loginEmailSenha, loginGithub, loginFacebook } from "../../firebase/auth";
 import "./login.css"
@@ -91,6 +92,7 @@ export function Login() {
   }
 
   const usuarioLogado = useContext(AuthContext);
+  const navegarQuiz = useNavigate();
 
   // Se tiver dados no objeto, está logado
   if (usuarioLogado !== null) {
@@ -131,6 +133,9 @@ export function Login() {
           <Button className="mb-3" variant="primary" onClick={onLoginFacebook}>
             <img src={facebookIcon} width="32" alt="Logo do github" /> Entrar com o Facebook
           </Button>
+          <Button className="mb-3" variant="light" onClick={() => navegarQuiz("/quiz")}>
+            <img src={interrogacao} width="32" alt="Ponto de interrogação" /><h4> Realize nosso Quiz interativo</h4>
+          </Button>
         </div>
 
         <Form onSubmit={handleSubmit(onSubmit)}>
@@ -165,11 +170,13 @@ export function Login() {
               <i class="bi bi-eye"></i>
             </Button>
             <Button type="submit" variant="success" className="my-3">Entrar</Button>
+            
           </div>
           <Link to="/recuperar" > Recuperar senha
           </Link>
         </Form>
       </div>
-    </Container>
-  );
+    </Container>    
+  );  
 }
+
