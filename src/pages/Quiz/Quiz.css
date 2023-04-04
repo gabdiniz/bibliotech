@@ -1,0 +1,26 @@
+.quiz-container {
+    width: 50%;    
+    padding: 10px;
+    background-color:rgba(126,203,219,200);    
+    border-radius: 10px;
+    margin: 2% 25%        
+}
+.quiz-container h1 {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #051958;
+    margin-left: 33%;
+}
+.quiz-container h2 {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #051958;
+    margin-left: 33%;
+}
+.quiz-container img{
+    width: 30%;
+    margin-top: 0%;
+    margin-left: 35%;
+
+}
+.botão{
+    margin-block:  10px;
+}

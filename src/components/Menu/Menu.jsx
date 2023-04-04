@@ -50,6 +50,9 @@ export function Menu() {
             <Nav.Link as={Link} to="/postagem">
              Postagens
             </Nav.Link>
+            <Nav.Link as={Link} to="/quiz">
+             Quiz 
+            </Nav.Link>
             <Nav.Link as={Link} to="/ajuda">
               Ajuda
             </Nav.Link>
@@ -58,7 +61,7 @@ export function Menu() {
             </Nav.Link>
             <Nav.Link onClick={onLogout}>
               <i className="bi bi-box-arrow-right"></i>
-            </Nav.Link>
+            </Nav.Link>           
           </Nav>
         </Navbar.Collapse>
       </Container>

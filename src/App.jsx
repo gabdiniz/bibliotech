@@ -20,6 +20,7 @@ import { Footer } from "./pages/Footer/Footer";
 import { Loading } from "./pages/Loading/Loading";
 import { Postagem } from "./pages/Postagem/Postagem";
 import { Perfil } from "./pages/Perfil/Perfil";
+import { Quiz } from "./pages/Quiz/Quiz";
 
 export function App() {
   const [loading, setLoading] = useState(true);
@@ -65,6 +66,7 @@ export function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/cadastro" element={<Cadastro />} />
               <Route path="*" element={<NotFound/>}/>
+              <Route path="/quiz" element={<Quiz/>}/>
             </Routes>
           }
         </BrowserRouter>
