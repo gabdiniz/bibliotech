@@ -22,6 +22,7 @@ import { Postagens } from "./pages/Postagens/Postagens";
 import { Perfil } from "./pages/Perfil/Perfil";
 import { Quiz } from "./pages/Quiz/Quiz";
 import { AdicionarPostagem } from "./pages/AdicionarPostagem/AdicionarPostagem";
+import { RecuperarSenha } from "./pages/RecuperarSenha/RecuperarSenha";
 import { novoUsuario } from "./firebase/usuarios";
 
 export function App() {
@@ -67,6 +68,7 @@ export function App() {
                 <Route path="/postagens/adicionar" element={<AdicionarPostagem />} />
               </Route>
               <Route path="/login" element={<Login />} />
+              <Route path="/recuperar" element={<RecuperarSenha />} />
               <Route path="/cadastro" element={<Cadastro />} />
               <Route path="*" element={<NotFound/>}/>
               <Route path="/quiz" element={<Quiz/>}/>
