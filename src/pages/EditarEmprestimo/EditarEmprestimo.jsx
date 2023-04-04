@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Container, Form } from "react-bootstrap";
+import { Breadcrumb, Button, Container, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
@@ -39,6 +39,12 @@ export function EditarEmprestimo() {
 
     return (
         <div className="editar-emprestimo">
+            <div className="p-1">
+                <Breadcrumb>
+                    <Breadcrumb.Item onClick={() => navigate("/emprestimos")}>Empréstimos</Breadcrumb.Item>
+                    <Breadcrumb.Item active>Editar</Breadcrumb.Item>
+                </Breadcrumb>
+            </div>
             <Container>
                 <h1>Editar empréstimo</h1>
                 <hr />

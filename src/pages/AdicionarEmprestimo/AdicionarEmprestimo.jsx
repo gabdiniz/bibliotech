@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Container, Form } from "react-bootstrap";
+import { Breadcrumb, Button, Container, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
@@ -34,6 +34,12 @@ export function AdicionarEmprestimo() {
 
     return (
         <div className="adicionar-emprestimo">
+            <div className="p-1">
+                <Breadcrumb>
+                    <Breadcrumb.Item onClick={() => navigate("/emprestimos")}>Emprestimos</Breadcrumb.Item>
+                    <Breadcrumb.Item active>Adicionar</Breadcrumb.Item>
+                </Breadcrumb>
+            </div>
             <Container>
                 <h1>Adicionar empréstimo</h1>
                 <hr />
