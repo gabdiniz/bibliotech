@@ -1,4 +1,4 @@
-import { Button, Container, Form } from "react-bootstrap";
+import { Breadcrumb, Button, Container, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
@@ -8,7 +8,6 @@ import { categorias } from "../../firebase/CategoriaLivros";
 
 export function AdicionarLivro() {
    
-
     const {
         register,
         handleSubmit,
@@ -48,6 +47,12 @@ export function AdicionarLivro() {
 
     return (
         <div className="adicionar-livro">
+            <div className="p-1">
+                <Breadcrumb>
+                    <Breadcrumb.Item onClick={() => navigate("/livros")}>Livros</Breadcrumb.Item>
+                    <Breadcrumb.Item active>Adicionar</Breadcrumb.Item>
+                </Breadcrumb>
+            </div>
             <Container>
                 <h1>Adicionar livro</h1>
                 <hr />
@@ -63,7 +68,7 @@ export function AdicionarLivro() {
                             })}
                         />
                         <Form.Text className="text-danger">
-                            {firebaseError(errors.titulo?.message)}
+                            {errors.titulo?.message}
                         </Form.Text>
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -77,7 +82,7 @@ export function AdicionarLivro() {
                             })}
                         />
                         <Form.Text className="text-danger">
-                            {firebaseError(errors.autor?.message)}
+                            {errors.autor?.message}
                         </Form.Text>
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -103,7 +108,7 @@ export function AdicionarLivro() {
                             })}
                         />
                         <Form.Text className="text-danger">
-                            {firebaseError(errors.isbn?.message)}
+                            {errors.isbn?.message}
                         </Form.Text>
                     </Form.Group>
                     <Form.Group className="mb-3">

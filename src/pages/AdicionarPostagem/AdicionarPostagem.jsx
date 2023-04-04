@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
-import { Button, Container, Form } from "react-bootstrap";
+import { Breadcrumb, Button, Container, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { adicionarPostagem } from "../../firebase/postagens";
 import { getLivro, getLivros } from "../../firebase/livros"
-import { firebaseError } from "../../firebase/erros";
 
 export function AdicionarPostagem() {
 
@@ -35,17 +34,21 @@ export function AdicionarPostagem() {
 
     return (
         <div className="adicionar-postagem">
+            <div className="p-1">
+                <Breadcrumb>
+                    <Breadcrumb.Item onClick={() => navigate("/postagens")}>Postagens</Breadcrumb.Item>
+                    <Breadcrumb.Item active>Adicionar</Breadcrumb.Item>
+                </Breadcrumb>
+            </div>
             <Container>
                 <h1>Adicionar nova postagem</h1>
                 <hr />
-
                 <form onSubmit={handleSubmit(onSubmit)}>
-
                     <Form.Group className="mb-3">
                         <Form.Label>Leitor</Form.Label>
                         <Form.Control type="text" className={errors.leitor && "is-invalid"} {...register("leitor", { required: "Leitor é obrigatório!", maxLength: { value: 30, message: "Limite de 30 caracteres!" } })} />
                         <Form.Text className="invalid-feedback">
-                            {firebaseError(errors.leitor?.message) }
+                            {errors.leitor?.message}
                         </Form.Text>
                     </Form.Group>
 
@@ -55,7 +58,7 @@ export function AdicionarPostagem() {
                             {livros.map(livro => <option key={livro.id} value={livro.id}>{livro.titulo}</option>)}
                         </Form.Select>
                         <Form.Text className="invalid-feedback">
-                            {firebaseError(errors.idLivro?.message) }
+                            {errors.idLivro?.message}
                         </Form.Text>
                     </Form.Group>
 
@@ -67,7 +70,7 @@ export function AdicionarPostagem() {
                             <option value="Não tenho certeza">Não tenho certeza</option>
                         </Form.Select>
                         <Form.Text className="invalid-feedback">
-                            {firebaseError(errors.recomenda?.message) }
+                            {errors.recomenda?.message}
                         </Form.Text>
                     </Form.Group>
 
@@ -75,7 +78,7 @@ export function AdicionarPostagem() {
                         <Form.Label>Resenha</Form.Label>
                         <Form.Control type="text" as="textarea" rows={5} className={errors.resenha && "is-invalid"} {...register("resenha", { required: "Preenchimento obrigatório!", maxLength: { value: 128, message: "Limite de 128 caracteres!" } })} />
                         <Form.Text className="invalid-feedback">
-                            {firebaseError(errors.resenha?.message) }
+                            {errors.resenha?.message}
                         </Form.Text>
                     </Form.Group>
 
