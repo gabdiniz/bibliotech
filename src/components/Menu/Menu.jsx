@@ -56,19 +56,21 @@ export function Menu() {
             <Nav.Link as={Link} to="/postagens">
               Postagens
             </Nav.Link>
+            <Nav.Link as={Link} to="/quiz">
+             Quiz 
+            </Nav.Link>
             <Nav.Link as={Link} to="/ajuda">
               Ajuda
             </Nav.Link>
             <Nav.Link onClick={onLogout}>
               <i className="bi bi-box-arrow-right"></i>
-            </Nav.Link>
+            </Nav.Link>           
             <Nav.Link as={Link} to="/perfil">
               {nome}
             </Nav.Link>
             <Link to="/perfil">
               <img src={fotoPerfil} width="32" alt="foto perfil" className="rounded-circle" id="fotoPerfil" />
             </Link>
-
           </Nav>
         </Navbar.Collapse>
       </Container>
