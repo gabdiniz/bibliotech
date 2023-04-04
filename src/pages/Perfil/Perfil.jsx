@@ -37,7 +37,7 @@ export function Perfil() {
           toast.success("Usuário atualizado com sucesso");
           navigate("/");
         }).catch((e) => {
-          toast.error(`Um erro aconteceu. Código: ${firebaseError(e.code) }`);
+          toast.error(`Um erro aconteceu. Código: ${firebaseError(e.code)}`);
         });
       })
     }
@@ -47,7 +47,7 @@ export function Perfil() {
         toast.success("Usuário atualizado com sucesso");
         navigate("/");
       }).catch((e) => {
-        toast.error(`Um erro aconteceu. Código: ${firebaseError(e.code) }`);
+        toast.error(`Um erro aconteceu. Código: ${firebaseError(e.code)}`);
       });
     }
   }
@@ -73,7 +73,7 @@ export function Perfil() {
             <Form.Label>Nome</Form.Label>
             <Form.Control type="text" size="lg" className={errors.displayName && "is-invalid"} {...register("displayName", { required: "Nome é obrigatório!", maxLength: { value: 255, message: "Limite de 255 caracteres!" } })} />
             <Form.Text className="text-danger">
-              {firebaseError(errors.displayName?.message) }
+              {errors.displayName?.message}
             </Form.Text>
           </Form.Group>
 
@@ -81,7 +81,7 @@ export function Perfil() {
             <Form.Label>Email</Form.Label>
             <Form.Control type="text" size="lg" className={errors.email && "is-invalid"} {...register("email", { required: "Email é obrigatório!", maxLength: { value: 255, message: "Limite de 255 caracteres!" } })} />
             <Form.Text className="text-danger">
-              {firebaseError(errors.email?.message) }
+              {errors.email?.message}
             </Form.Text>
           </Form.Group>
 
@@ -89,7 +89,7 @@ export function Perfil() {
             <Form.Label>Senha</Form.Label>
             <Form.Control type="text" size="lg" placeholder="********" className={errors.senha && "is-invalid"} {...register("senha", { minLength: { value: 8, message: "Mínimo de 8 caracteres!" } })} />
             <Form.Text className="text-danger">
-              {firebaseError(errors.senha?.message) }
+              {errors.senha?.message}
             </Form.Text>
           </Form.Group>
 
@@ -106,7 +106,7 @@ export function Perfil() {
             <Button variant="danger" onClick={onDelete}>Deletar perfil</Button>
           </div>
           <div>
-          <Link to="/recuperacao">
+            <Link to="/recuperacao">
               <small>Esqueceu a senha?</small>
             </Link>
           </div>
