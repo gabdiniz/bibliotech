@@ -73,7 +73,7 @@ export function Perfil() {
             <Form.Label>Nome</Form.Label>
             <Form.Control type="text" size="lg" className={errors.displayName && "is-invalid"} {...register("displayName", { required: "Nome é obrigatório!", maxLength: { value: 255, message: "Limite de 255 caracteres!" } })} />
             <Form.Text className="text-danger">
-              {errors.displayName?.message}
+              {errors.displayName?.message }
             </Form.Text>
           </Form.Group>
 

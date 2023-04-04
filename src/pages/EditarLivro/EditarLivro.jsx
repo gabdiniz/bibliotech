@@ -4,6 +4,8 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { getLivro, updateLivro, uploadCapaLivro } from "../../firebase/livros";
+import { firebaseError } from "../../firebase/erros";
+import { categorias } from "../../firebase/CategoriaLivros";
 
 export function EditarLivro() {
 
@@ -68,9 +70,16 @@ export function EditarLivro() {
                             {errors.autor?.message}
                         </Form.Text>
                     </Form.Group>
-                    <Form.Group className="mb-3">
+                    <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Categoria</Form.Label>
-                        <Form.Control type="text" className={errors.categoria && "is-invalid"} {...register("categoria", { required: "Categoria é obrigatória!", maxLength: { value: 255, message: "Limite de 255 caracteres!" } })} />
+
+                        <Form.Select {...register("categoria", { required: "Categoria e obrigatorio!" })} aria-label="Default select example">
+                        <option value="" selected disabled >Escolha uma opção</option>
+                            {categorias.map((cat) => (
+                                <option>{cat}</option>
+                            ))}
+                        </Form.Select>
+                        
                         <Form.Text className="text-danger">
                             {errors.categoria?.message}
                         </Form.Text>
