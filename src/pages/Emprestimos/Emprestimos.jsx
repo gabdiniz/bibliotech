@@ -35,12 +35,15 @@ export function Emprestimos() {
                                     <th>Livro</th>
                                     <th>Status</th>
                                     <th>Data de Empréstimo</th>
+                                    <th>Data de Entrega</th>
                                     <th>Ações</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {emprestimos.map(emprestimo => {
                                     const dataEmprestimo = emprestimo.dataEmprestimo.toDate().toLocaleDateString('pt-br');
+                                    let dataEntrega = new Date(emprestimo.dataEntrega).toLocaleDateString('pt-br');
+                                    if (dataEntrega === "Invalid Date") dataEntrega = "Sem data de entrega"
                                     return (
                                         <tr key={emprestimo.id}>
                                             <td>{emprestimo.leitor}</td>
@@ -48,9 +51,10 @@ export function Emprestimos() {
                                             <td>{emprestimo.telefone}</td>
                                             <td>{emprestimo.livro.titulo}</td>
                                             <td>
-                                                <Badge bg={emprestimo.status === "Pendente" ? "warning" : "success"}>{emprestimo.status}</Badge>
+                                                <Badge bg={emprestimo.status === "Pendente" ? "warning" : (emprestimo.status === "Atrasado") ? "danger" : "success"}>{emprestimo.status}</Badge>
                                             </td>
                                             <td>{dataEmprestimo}</td>
+                                            <td>{dataEntrega} </td>
                                             <td>
                                                 <Button
                                                     as={Link}
@@ -67,8 +71,7 @@ export function Emprestimos() {
                             </tbody>
                         </Table>
                 }
-                <br/>
-
+                <br />
             </Container>
         </div>
     )
