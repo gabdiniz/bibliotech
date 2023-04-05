@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Container, Form } from "react-bootstrap";
+import { Breadcrumb, Button, Container, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
@@ -17,7 +17,7 @@ export function AdicionarEmprestimo() {
     function onSubmit(data) {
         getLivro(data.idLivro).then(livro => {
             delete data.idLivro;
-            let novoEmprestimo = {...data, status: "Pendente", livro, dataEmprestimo: new Date()};
+            let novoEmprestimo = { ...data, status: "Pendente", livro, dataEmprestimo: new Date() };
             adicionarEmprestimo(novoEmprestimo).then(() => {
                 toast.success("Empréstimo adicionado com sucesso!", { duration: 2000, position: "bottom-right" })
                 navigate("/emprestimos");
@@ -34,6 +34,12 @@ export function AdicionarEmprestimo() {
 
     return (
         <div className="adicionar-emprestimo">
+            <div className="p-1">
+                <Breadcrumb>
+                    <Breadcrumb.Item onClick={() => navigate("/emprestimos")}>Emprestimos</Breadcrumb.Item>
+                    <Breadcrumb.Item active>Adicionar</Breadcrumb.Item>
+                </Breadcrumb>
+            </div>
             <Container>
                 <h1>Adicionar empréstimo</h1>
                 <hr />
@@ -68,9 +74,16 @@ export function AdicionarEmprestimo() {
                             {errors.idLivro?.message}
                         </Form.Text>
                     </Form.Group>
+                    <Form.Group className="mb-3">
+                        <Form.Label>Data de entrega</Form.Label>
+                        <Form.Control type="date" className={errors.dataEntrega && "is-invalid"} {...register("dataEntrega", { required: "Data de entrega é obrigatório!", maxLength: { value: 15, message: "Limite de 15 caracteres!" } })} />
+                        <Form.Text className="invalid-feedback">
+                            {errors.dataEntrega?.message}
+                        </Form.Text>
+                    </Form.Group>
                     <Button type="submit" variant="success">Emprestar</Button>
                 </Form>
-                <br/>
+                <br />
             </Container>
         </div>
     );

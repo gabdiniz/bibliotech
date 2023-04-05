@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Container, Form } from "react-bootstrap";
+import { Breadcrumb, Button, Container, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
@@ -8,7 +8,7 @@ import { getLivro, getLivros } from "../../firebase/livros"
 
 export function EditarEmprestimo() {
 
-    const {id} = useParams();
+    const { id } = useParams();
 
     const [livros, setLivros] = useState([]);
 
@@ -19,7 +19,7 @@ export function EditarEmprestimo() {
     function onSubmit(data) {
         getLivro(data.idLivro).then(livro => {
             delete data.idLivro;
-            let editEmprestimo = {...data, livro};
+            let editEmprestimo = { ...data, livro };
             updateEmprestimo(id, editEmprestimo).then(() => {
                 toast.success("Empréstimo editado com sucesso!", { duration: 2000, position: "bottom-right" })
                 navigate("/emprestimos");
@@ -39,6 +39,12 @@ export function EditarEmprestimo() {
 
     return (
         <div className="editar-emprestimo">
+            <div className="p-1">
+                <Breadcrumb>
+                    <Breadcrumb.Item onClick={() => navigate("/emprestimos")}>Empréstimos</Breadcrumb.Item>
+                    <Breadcrumb.Item active>Editar</Breadcrumb.Item>
+                </Breadcrumb>
+            </div>
             <Container>
                 <h1>Editar empréstimo</h1>
                 <hr />
@@ -85,7 +91,7 @@ export function EditarEmprestimo() {
                     </Form.Group>
                     <Button type="submit" variant="success">Editar</Button>
                 </Form>
-                <br/>
+                <br />
             </Container>
         </div>
     );

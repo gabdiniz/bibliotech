@@ -20,9 +20,11 @@ import { Footer } from "./pages/Footer/Footer";
 import { Loading } from "./pages/Loading/Loading";
 import { Postagens } from "./pages/Postagens/Postagens";
 import { Perfil } from "./pages/Perfil/Perfil";
+import { Quiz } from "./pages/Quiz/Quiz";
 import { AdicionarPostagem } from "./pages/AdicionarPostagem/AdicionarPostagem";
 import { DetalhesLivro } from "./pages/DetalhesLivro/DetalhesLivro";
-
+import { RecuperarSenha } from "./pages/RecuperarSenha/RecuperarSenha";
+import { novoUsuario } from "./firebase/usuarios";
 
 export function App() {
   const [loading, setLoading] = useState(true);
@@ -35,8 +37,8 @@ export function App() {
       // user é nulo = deslogado
       // user tem objeto = logado
       setUsuarioLogado(user);
+      novoUsuario(user);
     });
-
     // Esse efeito irá rodar apenas uma vez
     // Quando o App for renderizado/inicializado
     setTimeout(() => {
@@ -63,13 +65,15 @@ export function App() {
                 <Route path="/emprestimos/editar/:id" element={<EditarEmprestimo />} />
                 <Route path="/perfil" element={<Perfil />} />
                 <Route path="/" element={<Footer />} />
-                <Route path="/ajuda" element={<PaginaAjuda/>} />
-                <Route path="/postagens" element={<Postagens/>} />
-                <Route path="/postagens/adicionar" element={<AdicionarPostagem/>} />
+                <Route path="/ajuda" element={<PaginaAjuda />} />
+                <Route path="/postagens" element={<Postagens />} />
+                <Route path="/postagens/adicionar" element={<AdicionarPostagem />} />
               </Route>
               <Route path="/login" element={<Login />} />
+              <Route path="/recuperar" element={<RecuperarSenha />} />
               <Route path="/cadastro" element={<Cadastro />} />
               <Route path="*" element={<NotFound/>}/>
+              <Route path="/quiz" element={<Quiz/>}/>
             </Routes>
           }
         </BrowserRouter>

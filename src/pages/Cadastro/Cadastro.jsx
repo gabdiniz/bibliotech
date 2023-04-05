@@ -10,9 +10,12 @@ import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
+import interrogacao from "../../assets/icons/interrogacao.png"
+import { firebaseError } from "../../firebase/erros";
 
 export function Cadastro() {
 
+  const navegarQuiz = useNavigate();
   const {
     register,
     handleSubmit,
@@ -32,7 +35,7 @@ export function Cadastro() {
         navigate("/");
       })
       .catch((erro) => {
-        toast.error(`Um erro aconteceu. Código: ${erro.code}`, {
+        toast.error(`Um erro aconteceu. Código: ${firebaseError(erro.code)}`, {
           position: "bottom-right",
           duration: 2500,
         });
@@ -51,7 +54,7 @@ export function Cadastro() {
       })
       .catch((erro) => {
         // tratamento de erro
-        toast.error(`Um erro aconteceu. Código: ${erro.code}`, {
+        toast.error(`Um erro aconteceu. Código: ${firebaseError(erro.code)}`, {
           position: "bottom-right",
           duration: 2500,
         });
@@ -68,7 +71,7 @@ export function Cadastro() {
     })
       .catch((erro) => {
         // tratamento de erro
-        toast.error(`Um erro aconteceu. Código: ${erro.code}`, {
+        toast.error(`Um erro aconteceu. Código: ${firebaseError(erro.code)}`, {
           position: "bottom-right",
           duration: 2500,
         });
@@ -85,7 +88,7 @@ export function Cadastro() {
     })
       .catch((erro) => {
         // tratamento de erro
-        toast.error(`Um erro aconteceu. Código: ${erro.code}`, {
+        toast.error(`Um erro aconteceu. Código: ${firebaseError(erro.code)}`, {
           position: "bottom-right",
           duration: 2500,
         });
@@ -121,6 +124,9 @@ export function Cadastro() {
           </Button>
           <Button className="mb-3" variant="primary" onClick={onLoginFacebook}>
             <img src={facebookIcon} width="32" alt="Logo do github" /> Entrar com o Facebook
+          </Button>
+          <Button className="mb-3" variant="light" onClick={() => navegarQuiz("/quiz")}>
+            <img src={interrogacao} width="32" alt="Ponto de interrogação" /><h4> Realize nosso Quiz interativo</h4>
           </Button>
         </div>
 

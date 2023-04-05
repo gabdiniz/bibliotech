@@ -1,0 +1,24 @@
+.fundo{
+    background-color: #28a745;
+}
+.container-recuperar-senha{
+    
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+       
+      
+}
+.recuperar-senha{
+    border-radius: 12px;
+    box-shadow: 2px 2px 15px green;
+    background-color: white;
+    width: 500px;
+    height: 500px;
+    border: 2px solid green;
+    display: flex;
+    flex-direction: column;
+    padding: 0 30px 30px 30px;
+    justify-content: center;
+}

@@ -3,6 +3,7 @@ import {
   FacebookAuthProvider,
   GithubAuthProvider,
   GoogleAuthProvider,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
@@ -31,6 +32,9 @@ export async function loginGoogle() {
   const resultado = await signInWithPopup(auth, provider);
 
   return resultado.user;
+}
+export async function recoverPassword(email){
+  await sendPasswordResetEmail(auth, email)
 }
 
 export async function loginEmailSenha(email, senha) {
