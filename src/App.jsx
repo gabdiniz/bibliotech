@@ -25,7 +25,7 @@ import { AdicionarPostagem } from "./pages/AdicionarPostagem/AdicionarPostagem";
 import { DetalhesLivro } from "./pages/DetalhesLivro/DetalhesLivro";
 import { RecuperarSenha } from "./pages/RecuperarSenha/RecuperarSenha";
 import { novoUsuario } from "./firebase/usuarios";
-import { AdicionarAutor } from "./pages/AdicionarAutor/AdicionarAutor";
+import { PoliticasPrivacidade } from "./pages/PoliticasPrivacidade/PoliticasPrivacidade";
 
 export function App() {
   const [loading, setLoading] = useState(true);
@@ -74,8 +74,9 @@ export function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/recuperar" element={<RecuperarSenha />} />
               <Route path="/cadastro" element={<Cadastro />} />
-              <Route path="*" element={<NotFound />} />
-              <Route path="/quiz" element={<Quiz />} />
+              <Route path="*" element={<NotFound/>}/>
+              <Route path="/quiz" element={<Quiz/>}/>
+              <Route path="/politicasPrivacidade" element={<PoliticasPrivacidade/>}/>
             </Routes>
           }
         </BrowserRouter>

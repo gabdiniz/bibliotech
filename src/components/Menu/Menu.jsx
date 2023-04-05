@@ -58,7 +58,7 @@ export function Menu() {
             </Nav.Link>
             <Nav.Link as={Link} to="/quiz">
              Quiz 
-            </Nav.Link>
+            </Nav.Link>           
             <Nav.Link as={Link} to="/ajuda">
               Ajuda
             </Nav.Link>

@@ -26,6 +26,7 @@ export function Perfil() {
   }, [reset, usuarioLogado]);
 
   function onSubmit(data) {
+    
     const img = data.imagem[0];
     if (img) {
       const toastId = toast.loading("Upload da imagem...", { position: "top-right" });

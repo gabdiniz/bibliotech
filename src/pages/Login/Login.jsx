@@ -26,6 +26,7 @@ export function Login() {
     const { email, senha } = data;
     loginEmailSenha(email, senha)
       .then((user) => {
+        console.log(user.length)
         toast.success(`Entrando como ${user.email}`, {
           position: "bottom-right",
           duration: 2500,
