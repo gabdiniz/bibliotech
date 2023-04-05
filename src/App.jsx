@@ -27,6 +27,7 @@ import { RecuperarSenha } from "./pages/RecuperarSenha/RecuperarSenha";
 import { novoUsuario } from "./firebase/usuarios";
 import { Chat } from "./pages/Chat/Chat";
 import { PoliticasPrivacidade } from "./pages/PoliticasPrivacidade/PoliticasPrivacidade";
+import { AdicionarAutor } from "./pages/AdicionarAutor/AdicionarAutor";
 
 export function App() {
   const [loading, setLoading] = useState(true);
@@ -76,9 +77,9 @@ export function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/recuperar" element={<RecuperarSenha />} />
               <Route path="/cadastro" element={<Cadastro />} />
-              <Route path="*" element={<NotFound/>}/>
-              <Route path="/quiz" element={<Quiz/>}/>
-              <Route path="/politicasPrivacidade" element={<PoliticasPrivacidade/>}/>
+              <Route path="*" element={<NotFound />} />
+              <Route path="/quiz" element={<Quiz />} />
+              <Route path="/politicasPrivacidade" element={<PoliticasPrivacidade />} />
             </Routes>
           }
         </BrowserRouter>
