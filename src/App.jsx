@@ -25,6 +25,7 @@ import { AdicionarPostagem } from "./pages/AdicionarPostagem/AdicionarPostagem";
 import { DetalhesLivro } from "./pages/DetalhesLivro/DetalhesLivro";
 import { RecuperarSenha } from "./pages/RecuperarSenha/RecuperarSenha";
 import { novoUsuario } from "./firebase/usuarios";
+import { AdicionarAutor } from "./pages/AdicionarAutor/AdicionarAutor";
 
 export function App() {
   const [loading, setLoading] = useState(true);
@@ -68,6 +69,7 @@ export function App() {
                 <Route path="/ajuda" element={<PaginaAjuda />} />
                 <Route path="/postagens" element={<Postagens />} />
                 <Route path="/postagens/adicionar" element={<AdicionarPostagem />} />
+                <Route path="/autores/adicionar" element={<AdicionarAutor />} />
               </Route>
               <Route path="/login" element={<Login />} />
               <Route path="/recuperar" element={<RecuperarSenha />} />
