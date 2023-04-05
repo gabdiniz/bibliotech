@@ -7,9 +7,10 @@ import { deleteLivro, getLivros } from "../../firebase/livros";
 import "./Livros.css";
 
 export function Livros() {
-    const [livros, setLivros] = useState(null);
-    const [show, setShow] = useState(false);
 
+    const [livros, setLivros] = useState(null);
+
+    const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
@@ -72,7 +73,10 @@ export function Livros() {
                             {livros.map((livro) => {
                                 return (
                                     <tr key={livro.id}>
-                                        <td>{livro.titulo}</td>
+                                        <td variant="link"> <Link to={`/livros/detalhes/${livro.id}`}>{livro.titulo}</Link>
+                                            <br />
+                                            <br />
+                                        </td>
                                         <td>{livro.autor}</td>
                                         <td>{livro.categoria}</td>
                                         <td>{livro.isbn}</td>
@@ -89,14 +93,15 @@ export function Livros() {
                                             >
                                                 <i className="bi bi-pencil-fill"></i>
                                             </Button>
+
                                             <Button
+                                                className="me-2"
                                                 size="sm"
                                                 variant="danger"
                                                 onClick={() => onDeleteLivro(livro.id, livro.titulo)}
                                             >
                                                 <i className="bi bi-trash3-fill"></i>
                                             </Button>
-
 
                                             <Button size="sm" variant="primary" onClick={() => {
                                                 setLivrosSelecionado(livro)
@@ -105,7 +110,8 @@ export function Livros() {
                                             }}>
                                                 <i className="bi bi-body-text"></i>
                                             </Button>
-
+                                            <br />
+                                            <br />
                                             <Modal show={show} onHide={handleClose}>
                                                 <Modal.Header closeButton>
                                                     <Modal.Title></Modal.Title>
@@ -116,18 +122,13 @@ export function Livros() {
                                                     <p>{LivrosSelecionado?.isbn}</p>
                                                     <img style={{ width: "300px" }}
                                                         src={LivrosSelecionado?.urlCapa} alt={LivrosSelecionado?.titulo} />
-
                                                 </Modal.Body>
                                                 <Modal.Footer>
                                                     <Button variant="secondary" onClick={handleClose}>
                                                         Fechar
                                                     </Button>
-
                                                 </Modal.Footer>
                                             </Modal>
-
-
-
                                         </td>
                                     </tr>
                                 );
@@ -136,7 +137,7 @@ export function Livros() {
                     </Table>
                 )}
             </Container>
-            <br/>
+            <br />
         </div>
     );
 }

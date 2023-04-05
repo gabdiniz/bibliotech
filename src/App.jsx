@@ -21,6 +21,8 @@ import { Loading } from "./pages/Loading/Loading";
 import { Postagens } from "./pages/Postagens/Postagens";
 import { Perfil } from "./pages/Perfil/Perfil";
 import { AdicionarPostagem } from "./pages/AdicionarPostagem/AdicionarPostagem";
+import { DetalhesLivro } from "./pages/DetalhesLivro/DetalhesLivro";
+
 
 export function App() {
   const [loading, setLoading] = useState(true);
@@ -55,6 +57,7 @@ export function App() {
                 <Route path="/livros" element={<Livros />} />
                 <Route path="/livros/adicionar" element={<AdicionarLivro />} />
                 <Route path="/livros/editar/:id" element={<EditarLivro />} />
+                <Route path="/livros/detalhes/:id" element={< DetalhesLivro/>} />
                 <Route path="/emprestimos" element={<Emprestimos />} />
                 <Route path="/emprestimos/adicionar" element={<AdicionarEmprestimo />} />
                 <Route path="/emprestimos/editar/:id" element={<EditarEmprestimo />} />

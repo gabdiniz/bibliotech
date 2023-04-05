@@ -1,0 +1,9 @@
+.botao-detalhes {
+    width: 180px;
+}
+
+.cardsdetalhes {
+    border: 1px solid #c2dfb4 !important;
+    justify-content: center;
+    padding: 20px;
+}
