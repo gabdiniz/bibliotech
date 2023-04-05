@@ -22,6 +22,8 @@ import { Postagens } from "./pages/Postagens/Postagens";
 import { Perfil } from "./pages/Perfil/Perfil";
 import { Quiz } from "./pages/Quiz/Quiz";
 import { AdicionarPostagem } from "./pages/AdicionarPostagem/AdicionarPostagem";
+import { DetalhesLivro } from "./pages/DetalhesLivro/DetalhesLivro";
+import { RecuperarSenha } from "./pages/RecuperarSenha/RecuperarSenha";
 import { novoUsuario } from "./firebase/usuarios";
 import { PoliticasPrivacidade } from "./pages/PoliticasPrivacidade/PoliticasPrivacidade";
 
@@ -59,6 +61,7 @@ export function App() {
                 <Route path="/livros" element={<Livros />} />
                 <Route path="/livros/adicionar" element={<AdicionarLivro />} />
                 <Route path="/livros/editar/:id" element={<EditarLivro />} />
+                <Route path="/livros/detalhes/:id" element={< DetalhesLivro />} />
                 <Route path="/emprestimos" element={<Emprestimos />} />
                 <Route path="/emprestimos/adicionar" element={<AdicionarEmprestimo />} />
                 <Route path="/emprestimos/editar/:id" element={<EditarEmprestimo />} />
@@ -69,6 +72,7 @@ export function App() {
                 <Route path="/postagens/adicionar" element={<AdicionarPostagem />} />                
               </Route>
               <Route path="/login" element={<Login />} />
+              <Route path="/recuperar" element={<RecuperarSenha />} />
               <Route path="/cadastro" element={<Cadastro />} />
               <Route path="*" element={<NotFound/>}/>
               <Route path="/quiz" element={<Quiz/>}/>

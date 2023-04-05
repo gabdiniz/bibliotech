@@ -26,6 +26,7 @@ export function Login() {
     const { email, senha } = data;
     loginEmailSenha(email, senha)
       .then((user) => {
+        console.log(user.length)
         toast.success(`Entrando como ${user.email}`, {
           position: "bottom-right",
           duration: 2500,
@@ -33,7 +34,7 @@ export function Login() {
         navigate("/");
       })
       .catch((erro) => {
-        toast.error(`Um erro aconteceu. Código: ${firebaseError( erro.code)}`, {
+        toast.error(`Um erro aconteceu. Código: ${firebaseError(erro.code)}`, {
           position: "bottom-right",
           duration: 2500,
         });
@@ -149,7 +150,7 @@ export function Login() {
               {...register("email", { required: "Email é obrigatório" })}
             />
             <Form.Text className="invalid-feedback">
-              {firebaseError(errors.email?.message)} 
+              {errors.email?.message}
             </Form.Text>
           </Form.Group>
           <Form.Group className="mb-3" controlId="senha">
@@ -162,7 +163,7 @@ export function Login() {
               {...register("senha", { required: "Senha é obrigatória" })}
             />
             <Form.Text className="invalid-feedback">
-              {firebaseError(errors.senha?.message) }
+              {errors.senha?.message}
             </Form.Text>
           </Form.Group>
           <div>
@@ -170,11 +171,13 @@ export function Login() {
               <i class="bi bi-eye"></i>
             </Button>
             <Button type="submit" variant="success" className="my-3">Entrar</Button>
-            
+
           </div>
+          <Link to="/recuperar" > Recuperar senha
+          </Link>
         </Form>
       </div>
-    </Container>    
-  );  
+    </Container>
+  );
 }
 
