@@ -3,18 +3,17 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { addLivro, uploadCapaLivro } from "../../firebase/livros";
-import { firebaseError } from "../../firebase/erros";
 import { categorias } from "../../firebase/CategoriaLivros";
 
 export function AdicionarLivro() {
-   
+
     const {
         register,
         handleSubmit,
         formState: { errors },
     } = useForm();
-    const navigate = useNavigate();    
-      
+    const navigate = useNavigate();
+
     function onSubmit(data) {
         const imagem = data.imagem[0];
         if (imagem) {
@@ -88,7 +87,7 @@ export function AdicionarLivro() {
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Categoria</Form.Label>
                         <Form.Select {...register("categoria", { required: "Categoria e obrigatorio!" })} aria-label="Default select example">
-                                <option value="" selected disabled >Escolha uma opção</option>
+                            <option value="" selected disabled >Escolha uma opção</option>
                             {categorias.map((cat) => (
                                 <option>{cat}</option>
                             ))}

@@ -12,7 +12,6 @@ export function Livros() {
     const [show, setShow] = useState(false);
     const [tabela, setTabela] = useState(true);
 
-    const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
@@ -23,11 +22,6 @@ export function Livros() {
 
     function initializeTable() {
         getLivros().then((resultados) => {
-            setLivros(resultados);
-        });
-    }
-    function buscarLivros(id) {
-        getLivros(id).then((resultados) => {
             setLivros(resultados);
         });
     }
@@ -83,7 +77,7 @@ export function Livros() {
                                 {livros.map((livro) => {
                                     return (
                                         <tr key={livro.id}>
-                                            <td variant="link"> <Link to={`/livros/detalhes/${livro.id}`}>{livro.titulo}</Link>
+                                            <td variant="link"> <Link to={`/livros/detalhes/${livro.id}`}>{livro.titulo}</Link></td>
                                             <td>{livro.autor}</td>
                                             <td>{livro.categoria}</td>
                                             <td>{livro.isbn}</td>

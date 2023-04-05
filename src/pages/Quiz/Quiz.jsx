@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import imagem from "../../assets/images/login.png"
 
-
 export function Quiz() {
   const [atualQuestao, setAtualQuestao] = useState(0);
   const [ponto, setPonto] = useState(0);
@@ -27,13 +26,13 @@ export function Quiz() {
     setPonto(0);
     setShowPonto(false);
   };
-  return (     
-    <div className="quiz-container">             
-        <h1>Quiz Literário</h1>         
-        <img src={imagem} alt="imagem do quiz"/>              
+  return (
+    <div className="quiz-container">
+      <h1>Quiz Literário</h1>
+      <img src={imagem} alt="imagem do quiz" />
       {showPonto ? (
         <div>
-          <h2 >Você acertou {ponto} <br/>de {questoes.length} questões!</h2>          
+          <h2 >Você acertou {ponto} <br />de {questoes.length} questões!</h2>
           <div class="d-flex justify-content-center">
             <Button variant="secondary" onClick={() => navegarHome("/")} className="me-5">
               Voltar ao Menu
@@ -50,16 +49,16 @@ export function Quiz() {
             <h3 className>{questoes[atualQuestao].question}</h3>
           </div>
           <div className="d-flex flex-column">
-            {questoes[atualQuestao].alternativas.map((opcaoResposta) => (
-              <Button className="botão"variant="secondary" size="lg"onClick={() => 
+            {questoes[atualQuestao].alternativas.map((opcaoResposta, index) => (
+              <Button className="botão" variant="secondary" size="lg" onClick={() =>
                 handleClickRespCorreta(opcaoResposta === questoes[atualQuestao].alternativaCorreta)}
-              >{opcaoResposta}                
+              >{opcaoResposta}
               </Button>
             ))}
-          </div>           
+          </div>
         </>
       )}
-      </div>    
+    </div>
   );
 }
 
