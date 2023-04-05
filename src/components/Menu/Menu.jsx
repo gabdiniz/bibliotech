@@ -60,8 +60,8 @@ export function Menu() {
               Postagens
             </Nav.Link>
             <Nav.Link as={Link} to="/quiz">
-             Quiz 
-            </Nav.Link>           
+              Quiz
+            </Nav.Link>
             <Nav.Link as={Link} to="/ajuda">
               Ajuda
             </Nav.Link>
