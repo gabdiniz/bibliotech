@@ -111,6 +111,15 @@ export function AdicionarLivro() {
                             {errors.isbn?.message}
                         </Form.Text>
                     </Form.Group>
+
+                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Label>Sinopse</Form.Label>
+                        <Form.Control type="text" as="textarea" rows={4} placeholder="Faça uma breve descrição sobre o livro..." className={errors.info && "is-invalid"} {...register("info", { required: "Sinopse é obrigatório!", maxLength: { value: 600, message: "Limite de 600 caracteres!" } })} />
+                        <Form.Text className="text-danger"  >
+                            {errors.info?.message}
+                        </Form.Text>
+                    </Form.Group>
+
                     <Form.Group className="mb-3">
                         <Form.Label>Imagem da capa</Form.Label>
                         <Form.Control

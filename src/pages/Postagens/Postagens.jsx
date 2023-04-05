@@ -40,9 +40,11 @@ export function Postagens() {
                                         <Card.Text><b>Recomenda: </b>{postagem.recomenda}</Card.Text>
                                         <Card.Text><b>Resenha: </b><i>"{postagem.resenha}"</i></Card.Text>
                                         <small><b>Data de publicação: </b>{dataPostagem}</small>
+                                       <br/>
+                                        <br />
+                                        <Button className="bi-pencil-fill" size="sm" variant="warning"></Button>
+                                        <Button className="bi-trash3-fill" size="sm" variant="danger"></Button>
                                         <hr />
-                                        <Button className="bi bi-pencil-fill" size="sm" variant="warning"></Button>
-                                        <Button className="bi bi-trash3-fill" size="sm" variant="danger"></Button>
                                     </Card.Body>
                                 </Card>
                             )

@@ -7,10 +7,12 @@ import { deleteLivro, getLivros } from "../../firebase/livros";
 import "./Livros.css";
 
 export function Livros() {
+
     const [livros, setLivros] = useState(null);
     const [show, setShow] = useState(false);
     const [tabela, setTabela] = useState(true);
 
+    const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
@@ -81,7 +83,7 @@ export function Livros() {
                                 {livros.map((livro) => {
                                     return (
                                         <tr key={livro.id}>
-                                            <td>{livro.titulo}</td>
+                                            <td variant="link"> <Link to={`/livros/detalhes/${livro.id}`}>{livro.titulo}</Link>
                                             <td>{livro.autor}</td>
                                             <td>{livro.categoria}</td>
                                             <td>{livro.isbn}</td>

@@ -8,9 +8,15 @@
 }
 
 .card-postagem-card {
-    background-color: #c2dfb4!important;
+    background-color: #d8e3d2 !important;
     border-radius: 25px 0px 50px 0px !important;
     margin-bottom: 20px;
     width: 390px;
-    height: 380px !important;
+    height: 390px !important;
+}
+
+.bi-pencil-fill,
+.bi-trash3-fill,
+.bi-heart-fill {
+    margin-right: 5px !important;
 }

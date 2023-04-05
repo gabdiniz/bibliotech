@@ -16,7 +16,6 @@ export function AdicionarPostagem() {
 
     function onSubmit(data) {
         getLivro(data.idLivro).then(livro => {
-            delete data.idLivro;
             let novoPostagem = { ...data, livro, dataPostagem: new Date() };
             adicionarPostagem(novoPostagem).then(() => {
                 toast.success("Postagem adicionada com sucesso!", { duration: 2000, position: "bottom-right" })
