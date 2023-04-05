@@ -22,3 +22,4 @@ export const auth = getAuth(app);
 export const db = getFirestore(app);
 // Configura o Storage e seus recursos de Upload
 export const storage = getStorage(app);
+
