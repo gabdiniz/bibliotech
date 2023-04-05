@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { Card, Container } from "react-bootstrap";
 import { getEmprestimo, getEmprestimos } from "../../firebase/emprestimos";
@@ -44,6 +45,14 @@ export function Home() {
   const green_Title = true
   const yellowTitle = true
   
+    const [autores, setAutores] = useState(null);
+
+  useEffect(() => {
+    getAutores().then((busca) => {
+      setAutores(busca);
+    })
+  }, [])
+  
   
   return (
     <div >
@@ -70,8 +79,7 @@ export function Home() {
     <Card style={{ width: '18rem' }}>
       <Card.Body className="card-de-informaçao">
         <Card.Title>Total de emprestimo</Card.Title>        
-       
-       
+          
         <Card.Text className={green_Title ?"green_title" :"title"}>
         Livros Devolvidos:  {livrosEntregues}
         </Card.Text>
@@ -79,12 +87,36 @@ export function Home() {
          Livros Pendentes: {livrosPendentes}
         </Card.Text>
      
-        
       </Card.Body>
     </Card>
-
+        <br />
+        <hr/>
+        <h5>  Espaço dedicado para os autores: os maiores nomes da literatura  estão aqui!</h5>
+        <br />
+        <Button as={Link} to="/autores/adicionar" variant="success">Cadastrar novo Autor</Button>
+        <br />
+        {autores === null ? <Loader />
+          :
+          <section className="card-autores-card">
+            {autores.map((autor) => {
+              return (
+                <Card className="card-autores">
+                  <Card.Header><b>Autor: </b>{autor.nome}</Card.Header>
+                  <Card.Body >
+                    <small> <b>E-mail: </b>{autor.email}</small>
+                    <br />
+                  </Card.Body>
+                </Card>
+              );
+            })}
+          </section>
+        }
       </Container>
     </div>
 
   )
+
 }
+
+
+

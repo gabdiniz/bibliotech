@@ -1,1 +1,1 @@
-export const categorias = ["Humor", "Ficação cientifica","terror", "Romance", "Ação e Aventura","Terror","Poesia ", "Biografia","Drama "]
+export const categorias = ["Humor", "Ficação cientifica", "Religião e Espiritualidade", "Romance", "Ação e Aventura","Terror","Poesia ", "Biografia","Drama "]

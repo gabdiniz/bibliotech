@@ -27,7 +27,6 @@ import { RecuperarSenha } from "./pages/RecuperarSenha/RecuperarSenha";
 import { novoUsuario } from "./firebase/usuarios";
 import { PoliticasPrivacidade } from "./pages/PoliticasPrivacidade/PoliticasPrivacidade";
 
-
 export function App() {
   const [loading, setLoading] = useState(true);
   const [usuarioLogado, setUsuarioLogado] = useState(null);
@@ -69,7 +68,8 @@ export function App() {
                 <Route path="/" element={<Footer />} />
                 <Route path="/ajuda" element={<PaginaAjuda />} />
                 <Route path="/postagens" element={<Postagens />} />
-                <Route path="/postagens/adicionar" element={<AdicionarPostagem />} />                
+                <Route path="/postagens/adicionar" element={<AdicionarPostagem />} />
+                <Route path="/autores/adicionar" element={<AdicionarAutor />} />
               </Route>
               <Route path="/login" element={<Login />} />
               <Route path="/recuperar" element={<RecuperarSenha />} />

@@ -5,3 +5,5 @@ export const livrosCollection = collection(db, "livros");
 export const emprestimosCollection = collection(db, "emprestimos");
 export const postagensCollection = collection(db, "postagens");
 export const usuariosCollection = collection(db, "usuarios");
+export const autoresCollection = collection(db, "autores");
+
