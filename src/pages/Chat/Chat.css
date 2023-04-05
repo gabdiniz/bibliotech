@@ -1,0 +1,16 @@
+.mensagem {
+  padding: 5px;
+}
+
+.caixaMensagens {
+  overflow-y: scroll;
+  height: 50em;
+}
+
+.container-mensagens {
+  width: 80%;
+  margin: 30px auto;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+  border-radius: 4px;
+  padding: 5px 5px 1px 5px;
+}
