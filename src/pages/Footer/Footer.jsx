@@ -1,6 +1,6 @@
 import React from 'react';
 import logoIcon from "./../../assets/icons/livros.png";
-import { Button } from 'react-bootstrap';
+import { Button} from 'react-bootstrap';
 import {
     MDBFooter,
     MDBContainer,
@@ -8,6 +8,7 @@ import {
     MDBCol,
     MDBRow,
 } from 'mdb-react-ui-kit';
+import { Link } from 'react-router-dom';
 
 export function Footer() {
     return (
@@ -75,9 +76,8 @@ export function Footer() {
                                     </a>
                                 </p>
                                 <p>
-                                    <a href='#!' className='text-reset'>
-                                        Políticas
-                                    </a>
+                                <Link className='text-white' to ="/politicasPrivacidade">Politicas de Privacidade</Link>
+                                    
                                 </p>
                                 <p>
                                     <a href='#!' className='text-reset'>

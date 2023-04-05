@@ -23,6 +23,8 @@ import { Perfil } from "./pages/Perfil/Perfil";
 import { Quiz } from "./pages/Quiz/Quiz";
 import { AdicionarPostagem } from "./pages/AdicionarPostagem/AdicionarPostagem";
 import { novoUsuario } from "./firebase/usuarios";
+import { PoliticasPrivacidade } from "./pages/PoliticasPrivacidade/PoliticasPrivacidade";
+
 
 export function App() {
   const [loading, setLoading] = useState(true);
@@ -64,12 +66,13 @@ export function App() {
                 <Route path="/" element={<Footer />} />
                 <Route path="/ajuda" element={<PaginaAjuda />} />
                 <Route path="/postagens" element={<Postagens />} />
-                <Route path="/postagens/adicionar" element={<AdicionarPostagem />} />
+                <Route path="/postagens/adicionar" element={<AdicionarPostagem />} />                
               </Route>
               <Route path="/login" element={<Login />} />
               <Route path="/cadastro" element={<Cadastro />} />
               <Route path="*" element={<NotFound/>}/>
               <Route path="/quiz" element={<Quiz/>}/>
+              <Route path="/politicasPrivacidade" element={<PoliticasPrivacidade/>}/>
             </Routes>
           }
         </BrowserRouter>
