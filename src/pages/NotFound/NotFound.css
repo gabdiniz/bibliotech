@@ -1,12 +1,10 @@
-
-
-.tela{
+.tela {
     text-align: center;
-    background-color:#148c54 ;
+    background-color: #148c54;
     max-width: 100%;
-
+    height: 100vh;
 }
-.tela h1{
+
+.tela h1 {
     color: white;
-    
 }
