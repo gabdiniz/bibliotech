@@ -10,6 +10,7 @@ export function Chat() {
 
   const { register, handleSubmit } = useForm();
   const [mensagens, setMensagens] = useState([]);
+  const [atualizar, setAtualizar] = useState(0);
   const usuarioLogado = useContext(AuthContext);
   const referencia = useRef(null);
 
@@ -20,9 +21,10 @@ export function Chat() {
   useEffect(() => {
     getMensagens().then((msg) => {
       setMensagens(msg)
+      console.log("a")
     })
     referencia.current.scrollTop = referencia.current.scrollHeight;
-  }, [mensagens])
+  }, [atualizar])
 
 
   return (
@@ -51,7 +53,7 @@ export function Chat() {
         <Form onSubmit={handleSubmit(onSubmit)}>
           <Form.Group className="mb-3 d-flex" controlId="msg">
             <Form.Control type="text" {...register("msg")} />
-            <Button type="submit">Enviar</Button>
+            <Button type="submit" onClick={() => setAtualizar(atualizar + 1)}>Enviar</Button>
           </Form.Group>
         </Form>
       </div>
