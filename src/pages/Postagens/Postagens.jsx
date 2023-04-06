@@ -5,10 +5,13 @@ import { getPostagens } from "../../firebase/postagens";
 import { Loader } from "../../components/Loader/Loader";
 import React from 'react';
 import "./Postagens.css"
+import { ThemeContext } from '../../contexts/ThemeContext';
+import { useContext } from "react";
 
 export function Postagens() {
 
     const [postagens, setPostagens] = useState(null);
+    const [temaEscuro] = useContext(ThemeContext);
 
     useEffect(() => {
         getPostagens().then(busca => {
@@ -21,7 +24,7 @@ export function Postagens() {
             <Container>
                 <div className="d-flex justify-content-between align-items-center">
                     <h1>Postagens</h1>
-                    <Button as={Link} to="/postagens/adicionar" variant="success">Adicionar Postagem</Button>
+                    <Button as={Link} to="/postagens/adicionar" variant={temaEscuro?'secondary':'success'}>Adicionar Postagem</Button>
                 </div>
                 <hr />
                 <h5>Compartilhe sua experiência com outros usuários da Bibliotech</h5>

@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../../firebase/auth";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
+import { ThemeContext } from "../../contexts/ThemeContext";
 import semFotoPerfil from "../../assets/images/perfil/semFotoPerfil.jpg"
 
 export function Menu() {
@@ -12,6 +13,8 @@ export function Menu() {
   const usuarioLogado = useContext(AuthContext);
   const [nome, setNome] = useState();
   const [fotoPerfil, setFotoPerfil] = useState(null);
+  const [temaEscuro, setTemaEscuro] = useContext(ThemeContext)
+
 
   if (fotoPerfil === null) {
     (usuarioLogado.photoURL !== null) ? setFotoPerfil(usuarioLogado.photoURL) : setFotoPerfil(semFotoPerfil);
@@ -33,8 +36,17 @@ export function Menu() {
     });
   }
 
+  function changeTheme() {
+    if(temaEscuro === false){
+      setTemaEscuro(true);
+    } if(temaEscuro === true){
+      setTemaEscuro(false);
+
+    }
+  }
+
   return (
-    <Navbar bg="success" variant="light" expand="lg">
+    <Navbar bg={temaEscuro?"dark":"success"} variant="dark" expand="lg">
       <Container fluid>
         <Navbar.Brand>
           <Link to="/">
@@ -44,6 +56,9 @@ export function Menu() {
         <Navbar.Toggle />
         <Navbar.Collapse>
           <Nav className="ms-auto align-items-center">
+            <Nav.Link onClick={changeTheme}>
+              <i class={temaEscuro?"bi bi-brightness-high-fill":"bi bi-moon-fill"}></i>
+            </Nav.Link>
             <Nav.Link as={Link} to="/">
               Home
             </Nav.Link>

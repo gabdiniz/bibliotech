@@ -5,12 +5,15 @@ import { Link } from "react-router-dom";
 import { Loader } from "../../components/Loader/Loader";
 import { deleteLivro, getLivros } from "../../firebase/livros";
 import "./Livros.css";
+import { ThemeContext } from '../../contexts/ThemeContext';
+import { useContext } from "react";
 
 export function Livros() {
 
     const [livros, setLivros] = useState(null);
     const [show, setShow] = useState(false);
     const [tabela, setTabela] = useState(true);
+    const [temaEscuro] = useContext(ThemeContext);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -51,10 +54,10 @@ export function Livros() {
                 <div className="d-flex justify-content-between align-items-center">
                     <h1>Livros</h1>
                     <div>
-                        <Button as={Link} to="/livros/adicionar" variant="success" className="me-2">
+                        <Button as={Link} to="/livros/adicionar" variant={temaEscuro?'secondary':'success'} className="me-2">
                             Adicionar Livro
                         </Button>
-                        <Button variant="success" onClick={setFormato}>{tabela === true ? "Cards" : "Tabela"}</Button>
+                        <Button variant={temaEscuro?'secondary':'success'} onClick={setFormato}>{tabela === true ? "Cards" : "Tabela"}</Button>
                     </div>
                 </div>
                 <hr />
@@ -62,7 +65,7 @@ export function Livros() {
                     <Loader />
                 ) : (
                     tabela === true ? (
-                        <Table striped bordered hover>
+                        <Table variant={temaEscuro?'dark':''}  striped bordered hover>
                             <thead>
                                 <tr>
                                     <th>Título</th>

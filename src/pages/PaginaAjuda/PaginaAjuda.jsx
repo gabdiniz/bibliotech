@@ -9,12 +9,15 @@ import image1 from "../../assets/images/livros-para-empreendedores.jpg"
 
 import image2 from "../../assets/images/OIP.jpg"
 import image3 from "../../assets/images/R.jpg"
+import { ThemeContext } from '../../contexts/ThemeContext';
+import { useContext } from "react";
 
 
 
 export function PaginaAjuda() {
+  const [temaEscuro] = useContext(ThemeContext);
   return (
-   <body className="im">
+   <body className={temaEscuro?"bg-dark text-secondary":"im"}>
     <div>
       <Navbar bg="warning" variant="warning">
         <Container className="d-flex ">
