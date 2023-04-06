@@ -4,10 +4,15 @@ import { Card, Container, Button } from "react-bootstrap";
 import { getEmprestimo, getEmprestimos } from "../../firebase/emprestimos";
 import { getLivros } from "../../firebase/livros"
 import { getUsuarios } from "../../firebase/usuarios";
+import { getAutores } from "../../firebase/autores";
+import { Link } from "react-router-dom";
+import { Loader } from "../../components/Loader/Loader";
+
 import "./Home.css"
 import { getAutores } from "../../firebase/autores";
 import { Loader } from "../../components/Loader/Loader";
 import { Link } from "react-router-dom";
+
 export function Home() {
   const [emprestimos, setEmprestimos] = useState(0)
   const [livros, setLivros] = useState(0)
@@ -28,7 +33,6 @@ export function Home() {
     })
 
   }, [])
-
 
   useEffect(() => {
     getEmprestimos().then((busca) => {
