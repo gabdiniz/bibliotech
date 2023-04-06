@@ -37,16 +37,16 @@ export function Menu() {
   }
 
   function changeTheme() {
-    if(temaEscuro === false){
+    if (temaEscuro === false) {
       setTemaEscuro(true);
-    } if(temaEscuro === true){
+    } if (temaEscuro === true) {
       setTemaEscuro(false);
 
     }
   }
 
   return (
-    <Navbar bg={temaEscuro?"dark":"success"} variant="dark" expand="lg">
+    <Navbar bg={temaEscuro ? "dark" : "success"} variant={temaEscuro ? "dark" : "success"} expand="lg">
       <Container fluid>
         <Navbar.Brand>
           <Link to="/">
@@ -57,14 +57,14 @@ export function Menu() {
         <Navbar.Collapse>
           <Nav className="ms-auto align-items-center">
             <Nav.Link onClick={changeTheme}>
-              <i class={temaEscuro?"bi bi-brightness-high-fill":"bi bi-moon-fill"}></i>
+              <i class={temaEscuro ? "bi bi-brightness-high-fill" : "bi bi-moon-fill"}></i>
             </Nav.Link>
             <Nav.Link as={Link} to="/">
               Home
             </Nav.Link>
-            <Nav.Link as={Link} to="/chat">
+            {/* <Nav.Link as={Link} to="/chat">
               Chat
-            </Nav.Link>
+            </Nav.Link> */}
             <Nav.Link as={Link} to="/livros">
               Livros
             </Nav.Link>
