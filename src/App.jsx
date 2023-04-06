@@ -7,6 +7,7 @@ import { Toaster } from "react-hot-toast";
 import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase/config";
+import { ThemeContext } from "./contexts/ThemeContext";
 import { AuthContext } from "./contexts/AuthContext";
 import { AdicionarLivro } from "./pages/AdicionarLivro/AdicionarLivro";
 import { Livros } from "./pages/Livros/Livros";
@@ -32,6 +33,8 @@ import { AdicionarAutor } from "./pages/AdicionarAutor/AdicionarAutor";
 export function App() {
   const [loading, setLoading] = useState(true);
   const [usuarioLogado, setUsuarioLogado] = useState(null);
+  const temaEscuro = useState(false);
+
 
   useEffect(() => {
     // Monitorar/detectar o usuário conectado
@@ -51,6 +54,7 @@ export function App() {
 
   return (
     <>
+    <ThemeContext.Provider value={temaEscuro}>
       <AuthContext.Provider value={usuarioLogado}>
         <BrowserRouter>
           {loading === true ?
@@ -84,6 +88,7 @@ export function App() {
           }
         </BrowserRouter>
       </AuthContext.Provider>
+    </ThemeContext.Provider>
       <Toaster />
     </>
   );

@@ -7,11 +7,9 @@ import { getUsuarios } from "../../firebase/usuarios";
 import { getAutores } from "../../firebase/autores";
 import { Link } from "react-router-dom";
 import { Loader } from "../../components/Loader/Loader";
-
 import "./Home.css"
-import { getAutores } from "../../firebase/autores";
-import { Loader } from "../../components/Loader/Loader";
-import { Link } from "react-router-dom";
+import { ThemeContext } from '../../contexts/ThemeContext';
+import { useContext } from "react";
 
 export function Home() {
   const [emprestimos, setEmprestimos] = useState(0)
@@ -19,6 +17,7 @@ export function Home() {
   const [livrosPendentes, setlivrosPendentes] = useState(0)
   const [livrosEntregues, setlivrosEntregues] = useState(0)
   const [usuario, setUsuario] = useState(0);
+  const [temaEscuro] = useContext(ThemeContext);
 
   useEffect(() => {
     getLivros().then((busca) => {
@@ -105,7 +104,7 @@ export function Home() {
         <hr />
         <h5>  Espaço dedicado para os autores: os maiores nomes da literatura  estão aqui!</h5>
         <br />
-        <Button as={Link} to="/autores/adicionar" variant="success">Cadastrar novo Autor</Button>
+        <Button as={Link} to="/autores/adicionar" variant={temaEscuro?'secondary':'success'}>Cadastrar novo Autor</Button>
         <br />
         {autores === null ? <Loader />
           :

@@ -9,6 +9,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { deleteUser } from "@firebase/auth";
 import semFotoPerfil from "../../assets/images/perfil/semFotoPerfil.jpg"
 import { firebaseError } from "../../firebase/erros";
+import { ThemeContext } from '../../contexts/ThemeContext';
 
 export function Perfil() {
 
@@ -16,6 +17,7 @@ export function Perfil() {
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
   const navigate = useNavigate();
   const [imagem, setImagem] = useState(null);
+  const [temaEscuro] = useContext(ThemeContext);
 
   if (imagem === null) {
     (usuarioLogado.photoURL !== null) ? setImagem(usuarioLogado.photoURL) : setImagem(semFotoPerfil);
@@ -100,16 +102,11 @@ export function Perfil() {
           </Form.Group>
 
           <div className="mt-4">
-            <Button type="submit" variant="success" className="me-2">Alterar</Button>
-            <Button as={Link} to="/" variant="success">Cancelar</Button>
+            <Button type="submit" variant={temaEscuro?'secondary':'success'} className="me-2">Alterar</Button>
+            <Button as={Link} to="/" variant={temaEscuro?'secondary':'success'}>Cancelar</Button>
           </div>
           <div className="mt-5 d-flex justify-content-end">
             <Button variant="danger" onClick={onDelete}>Deletar perfil</Button>
-          </div>
-          <div>
-            <Link to="/recuperacao">
-              <small>Esqueceu a senha?</small>
-            </Link>
           </div>
         </Form>
       </div>

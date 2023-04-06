@@ -3,10 +3,13 @@ import { Badge, Button, Container, Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { getEmprestimos } from "../../firebase/emprestimos";
 import { Loader } from "../../components/Loader/Loader";
+import { ThemeContext } from '../../contexts/ThemeContext';
+import { useContext } from "react";
 
 export function Emprestimos() {
 
     const [emprestimos, setEmprestimos] = useState(null);
+    const [temaEscuro] = useContext(ThemeContext);
 
     useEffect(() => {
         getEmprestimos().then(busca => {
@@ -19,14 +22,14 @@ export function Emprestimos() {
             <Container>
                 <div className="d-flex justify-content-between align-items-center">
                     <h1>Emprestimos</h1>
-                    <Button as={Link} to="/emprestimos/adicionar" variant="success">Adicionar emprestimo</Button>
+                    <Button as={Link} to="/emprestimos/adicionar" variant={temaEscuro?'secondary':'success'}>Adicionar emprestimo</Button>
                 </div>
                 <hr />
                 {
                     emprestimos === null ?
                         <Loader />
                         :
-                        <Table striped bordered hover>
+                        <Table variant={temaEscuro?'dark':''} striped bordered hover>
                             <thead>
                                 <tr>
                                     <th>Leitor</th>

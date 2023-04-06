@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import logoIcon from "./../../assets/icons/livros.png";
 import { Button} from 'react-bootstrap';
 import {
@@ -9,10 +9,12 @@ import {
     MDBRow,
 } from 'mdb-react-ui-kit';
 import { Link } from 'react-router-dom';
+import { ThemeContext } from '../../contexts/ThemeContext';
 
 export function Footer() {
+    const [temaEscuro] = useContext(ThemeContext)
     return (
-        <MDBFooter className='text-center' color='white' bgColor='success'>
+        <MDBFooter className='text-center' color='white' bgColor={temaEscuro?'dark':'success'}>
             <MDBContainer className='p-4'>
                 <section className='mb-4'>
                     <p className='text-uppercase fw-bold mb-4'>Acompanhe nossas redes socias:</p>
