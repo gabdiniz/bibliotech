@@ -9,6 +9,9 @@ import { Link } from "react-router-dom";
 import { Loader } from "../../components/Loader/Loader";
 
 import "./Home.css"
+import { getAutores } from "../../firebase/autores";
+import { Loader } from "../../components/Loader/Loader";
+import { Link } from "react-router-dom";
 
 export function Home() {
   const [emprestimos, setEmprestimos] = useState(0)
@@ -124,6 +127,9 @@ export function Home() {
     </Container>
   )
 }
+
+
+
 
 
 

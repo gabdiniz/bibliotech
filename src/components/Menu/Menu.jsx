@@ -47,6 +47,9 @@ export function Menu() {
             <Nav.Link as={Link} to="/">
               Home
             </Nav.Link>
+            <Nav.Link as={Link} to="/chat">
+              Chat
+            </Nav.Link>
             <Nav.Link as={Link} to="/livros">
               Livros
             </Nav.Link>
@@ -57,14 +60,14 @@ export function Menu() {
               Postagens
             </Nav.Link>
             <Nav.Link as={Link} to="/quiz">
-             Quiz 
-            </Nav.Link>           
+              Quiz
+            </Nav.Link>
             <Nav.Link as={Link} to="/ajuda">
               Ajuda
             </Nav.Link>
             <Nav.Link onClick={onLogout}>
               <i className="bi bi-box-arrow-right"></i>
-            </Nav.Link>           
+            </Nav.Link>
             <Nav.Link as={Link} to="/perfil">
               {nome}
             </Nav.Link>
