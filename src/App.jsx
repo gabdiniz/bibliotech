@@ -26,6 +26,7 @@ import { DetalhesLivro } from "./pages/DetalhesLivro/DetalhesLivro";
 import { RecuperarSenha } from "./pages/RecuperarSenha/RecuperarSenha";
 import { novoUsuario } from "./firebase/usuarios";
 import { PoliticasPrivacidade } from "./pages/PoliticasPrivacidade/PoliticasPrivacidade";
+import { AdicionarAutor } from "./pages/AdicionarAutor/AdicionarAutor";
 
 export function App() {
   const [loading, setLoading] = useState(true);

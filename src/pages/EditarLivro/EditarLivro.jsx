@@ -1,10 +1,11 @@
-import { useEffect } from "react";
-import { Breadcrumb, Button, Container, Form } from "react-bootstrap";
+import { useEffect, useState } from "react";
+import { Breadcrumb, Button, Container, Form, Badge } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import { getLivro, updateLivro, uploadCapaLivro } from "../../firebase/livros";
 import { categorias } from "../../firebase/CategoriaLivros";
+import { getAutores } from "../../firebase/autores";
 
 export function EditarLivro() {
 
@@ -12,6 +13,7 @@ export function EditarLivro() {
 
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
     const navigate = useNavigate();
+    const [autores, setAutores] = useState([]);
 
     function onSubmit(data) {
         const imagem = data.imagem[0];
@@ -36,12 +38,21 @@ export function EditarLivro() {
         }
 
     }
-
+    
     useEffect(() => {
         getLivro(id).then(livro => {
             reset(livro);
         })
     }, [id, reset]);
+
+    function selecioneAutor() {
+        getAutores().then(busca => {
+            setAutores(busca)
+        })
+    }
+    useEffect(() => {
+        selecioneAutor();
+    }, [])
 
     return (
         <div className="editar-livro">
@@ -62,27 +73,37 @@ export function EditarLivro() {
                             {errors.titulo?.message}
                         </Form.Text>
                     </Form.Group>
+
                     <Form.Group className="mb-3">
-                        <Form.Label>Autor</Form.Label>
-                        <Form.Control type="text" className={errors.autor && "is-invalid"} {...register("autor", { required: "Autor é obrigatório!", maxLength: { value: 255, message: "Limite de 255 caracteres!" } })} />
-                        <Form.Text className="text-danger">
-                            {errors.autor?.message}
-                        </Form.Text>
+                        <Form.Label>Autor .</Form.Label>
+                        <Badge bg="success" as={Link} to="/autores/adicionar">
+                            cadastrar novo
+                        </Badge>
+                        <Form.Select type="text" className={errors.autor && "is-invalid"}
+                            {...register("autor", {
+                                required: "Autor é obrigatório!",
+                                maxLength: { value: 80, message: "Limite de 80 caracteres!" }
+                            })}>
+                            <option value="" selected disabled>Selecione um Autor</option>
+                            {autores.map(selecioneautor => {
+                                return <option key={selecioneautor.id}>{selecioneautor.nome}</option>
+                            })}
+                        </Form.Select>
+
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Categoria</Form.Label>
-
                         <Form.Select {...register("categoria", { required: "Categoria e obrigatorio!" })} aria-label="Default select example">
                             <option value="" selected disabled >Escolha uma opção</option>
                             {categorias.map((cat) => (
                                 <option>{cat}</option>
                             ))}
                         </Form.Select>
-
                         <Form.Text className="text-danger">
                             {errors.categoria?.message}
                         </Form.Text>
                     </Form.Group>
+
                     <Form.Group className="mb-3">
                         <Form.Label>ISBN</Form.Label>
                         <Form.Control type="text" className={errors.isbn && "is-invalid"} {...register("isbn", { required: "ISBN é obrigatório!", maxLength: { value: 255, message: "Limite de 255 caracteres!" } })} />
@@ -90,6 +111,7 @@ export function EditarLivro() {
                             {errors.isbn?.message}
                         </Form.Text>
                         <br />
+
                         <Form.Group className="mb-3">
                             <Form.Label>Sinopse</Form.Label>
                             <Form.Control type="text" as="textarea" rows={4} placeholder="Faça uma breve descrição sobre o livro..." className={errors.info && "is-invalid"} {...register("info", { required: "Sinopse é obrigatório!", maxLength: { value: 600, message: "Limite de 600 caracteres!" } })} />
@@ -98,10 +120,12 @@ export function EditarLivro() {
                             </Form.Text>
                         </Form.Group>
                     </Form.Group>
+
                     <Form.Group className="mb-3">
                         <Form.Label>Imagem da capa</Form.Label>
                         <Form.Control type="file" {...register("imagem")} />
                     </Form.Group>
+
                     <Button type="submit" variant="success">Editar</Button>
                 </Form>
                 <br />
